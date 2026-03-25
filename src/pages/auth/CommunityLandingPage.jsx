@@ -4,9 +4,9 @@ import useCountUp from '../../hooks/useCountUp';
 import Logo from '../../components/shared/Logo';
 import {
   ArrowLeft, TrendingDown, Users,
-  CheckCircle, Globe, Heart,
-  ShoppingBag, Coins,
-  Package, Eye, Truck,
+  CheckCircle, Globe, Heart, Target,
+  ShoppingBag, Coins, Unlock,
+  Package, Eye, Truck, Flower2, Wrench,
 } from 'lucide-react';
 
 /* ── Looping Typing Animation Hook ── */
@@ -124,10 +124,8 @@ export default function CommunityLandingPage() {
             </span>
           </p>
 
-          <p className="text-base md:text-lg text-slate-500 max-w-md mx-auto mb-8 leading-relaxed animate-fade-in" style={{ animationDelay: '0.3s' }}>
-            מוצרים במחירי יבואן. 5% מכל רכישה חוזרים לקהילה.
-            <br />
-            בלי עלות, בלי התחייבות.
+          <p className="text-base md:text-lg text-slate-500 max-w-lg mx-auto mb-8 leading-relaxed animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            UNION מאגדת קהילות לכוח קנייה משותף — ככל שיותר תושבים קונים ביחד, המחיר יורד לכולם. 5% מכל רכישה חוזרים ישירות לתקציב הקהילה שלכם. ללא עלות הצטרפות, ללא התחייבות.
           </p>
 
           {/* CTA */}
@@ -148,21 +146,259 @@ export default function CommunityLandingPage() {
           </div>
 
           {/* Stats */}
-          <div className="flex items-center justify-center gap-8 sm:gap-12 animate-fade-in" style={{ animationDelay: '0.7s' }}>
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-black text-slate-900">40%</div>
-              <div className="text-xs text-slate-400 mt-1 font-medium">חיסכון ממוצע</div>
-            </div>
-            <div className="w-px h-10 bg-slate-200" />
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-black text-slate-900">5%</div>
-              <div className="text-xs text-slate-400 mt-1 font-medium">חוזר לקהילה</div>
-            </div>
-            <div className="w-px h-10 bg-slate-200" />
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-black text-emerald-600">₪0</div>
-              <div className="text-xs text-slate-400 mt-1 font-medium">עלות הצטרפות</div>
-            </div>
+          <div className="grid grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.7s' }}>
+            {[
+              { value: '40%', label: 'חיסכון ממוצע', accent: 'text-indigo-400' },
+              { value: '5%', label: 'חוזר לקהילה', accent: 'text-purple-400' },
+              { value: '₪0', label: 'עלות הצטרפות', accent: 'text-emerald-400' },
+            ].map((stat, i) => (
+              <div key={i} className="rounded-2xl p-4 sm:p-6 text-center border border-white/10 shadow-lg hover:shadow-xl hover:border-white/20 transition-all duration-300" style={{ background: 'linear-gradient(145deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%)' }}>
+                <div className="text-4xl sm:text-5xl font-black text-white mb-2">{stat.value}</div>
+                <div className={`text-sm sm:text-base ${stat.accent} font-medium`}>{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          APP SHOWCASE — Real components from the app
+          ══════════════════════════════════════════ */}
+      <section className="bg-slate-50 py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <div className="text-center mb-16">
+            <p className="text-indigo-600 font-bold text-sm mb-3 tracking-wide">הצצה לאפליקציה</p>
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight">
+              ככה זה נראה מבפנים
+            </h2>
+            <p className="text-slate-500 mt-3 max-w-lg mx-auto">שני הפיצ׳רים שמשנים את הכל — מחירים שיורדים ותקציב קהילתי שגדל</p>
+          </div>
+
+          {/* ═══ FEATURE 1: Dynamic Pricing ═══ */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center mb-24 md:mb-32">
+            {/* Explanation — right side (RTL) */}
+            {(() => {
+              const [ref, isVisible] = useIntersectionObserver({ threshold: 0.2 });
+              return (
+                <div ref={ref} className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full text-xs font-bold mb-4">
+                    <TrendingDown size={12} />
+                    מתוך דף המוצר באפליקציה
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-black text-slate-900 mb-4 leading-tight">
+                    ככל שיותר שכנים קונים —
+                    <br />
+                    <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">המחיר יורד לכולם</span>
+                  </h3>
+                  <p className="text-slate-500 leading-relaxed mb-6">
+                    כל מוצר באפליקציה מציג מדרגות מחיר דינמיות. ככל שיותר תושבים מצטרפים לרכישה, כולם נהנים ממחיר נמוך יותר — בזמן אמת. לא צריך לחכות, לא צריך קופונים.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <div className="flex items-center gap-2 text-sm text-slate-600 bg-white rounded-full px-4 py-2 border border-slate-100">
+                      <CheckCircle size={14} className="text-emerald-500" />
+                      המחיר יורד אוטומטית
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-slate-600 bg-white rounded-full px-4 py-2 border border-slate-100">
+                      <CheckCircle size={14} className="text-emerald-500" />
+                      שקוף לכל התושבים
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* App component — left side */}
+            {(() => {
+              const [ref, isVisible] = useIntersectionObserver({ threshold: 0.15 });
+              return (
+                <div ref={ref} className={`transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+                  <div className="bg-white rounded-3xl p-5 md:p-7 border border-slate-200 shadow-lg shadow-slate-200/50">
+                    {/* Progress bar — from the app */}
+                    <div className={`bg-white p-4 rounded-2xl border border-slate-100 mb-4 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+                      <div className="flex items-center justify-between mb-3">
+                        <h3 className="text-sm font-bold text-slate-900">התקדמות הקבוצה</h3>
+                        <div className="flex items-center gap-1.5">
+                          <Users size={13} className="text-indigo-600" />
+                          <span className="text-xs font-bold text-indigo-600">34 הצטרפו</span>
+                        </div>
+                      </div>
+                      <div className="relative h-3 bg-slate-100 rounded-full overflow-hidden">
+                        <div className={`absolute top-0 right-0 h-full bg-gradient-to-l from-indigo-600 via-purple-500 to-indigo-400 rounded-full transition-all duration-1500 ease-out ${isVisible ? 'w-[68%]' : 'w-0'}`} />
+                      </div>
+                      <p className="text-center text-xs font-medium text-slate-600 mt-2">
+                        רק עוד <span className="text-indigo-600 font-extrabold">6 רוכשים</span> כדי לרדת למחיר של{' '}
+                        <span className="text-indigo-600 font-extrabold">₪2,899</span>!
+                      </p>
+                    </div>
+
+                    {/* Tier list */}
+                    <div className="space-y-2">
+                      <div className={`bg-white/70 p-3.5 rounded-2xl flex justify-between items-center border border-slate-100 transition-all duration-500 delay-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`}>
+                        <div className="flex items-center gap-3">
+                          <div className="w-7 h-7 rounded-full bg-emerald-50 flex items-center justify-center">
+                            <CheckCircle size={14} className="text-emerald-400" />
+                          </div>
+                          <div>
+                            <span className="text-[10px] text-slate-400 font-medium">10–19 רוכשים</span>
+                            <p className="font-bold text-slate-400 text-sm">₪3,499</p>
+                          </div>
+                        </div>
+                        <span className="text-[9px] font-bold text-emerald-400 bg-emerald-50 px-2 py-0.5 rounded-full">הושג</span>
+                      </div>
+
+                      <div className={`bg-gradient-to-r from-indigo-50 to-purple-50 p-4 rounded-2xl flex justify-between items-center border-2 border-indigo-500 ring-4 ring-indigo-500/10 shadow-sm transition-all duration-500 delay-900 ${isVisible ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-4 scale-95'}`}>
+                        <div className="flex items-center gap-3">
+                          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center shadow-md">
+                            <TrendingDown size={18} className="text-white" />
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2 mb-0.5">
+                              <span className="text-[10px] font-bold text-indigo-600">המחיר שלך</span>
+                              <span className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full">עכשיו</span>
+                            </div>
+                            <span className="text-xl font-black text-slate-900">₪3,199</span>
+                            <p className="text-[10px] text-slate-500 font-medium">20–39 רוכשים</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className={`bg-white p-3.5 rounded-2xl flex justify-between items-center border border-dashed border-indigo-200 transition-all duration-500 delay-[1100ms] ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`}>
+                        <div className="flex items-center gap-3">
+                          <div className="w-7 h-7 rounded-full bg-indigo-50 flex items-center justify-center"><Target size={14} className="text-indigo-300" /></div>
+                          <div>
+                            <span className="text-[10px] text-slate-400 font-medium">40–59 רוכשים</span>
+                            <p className="font-bold text-slate-500 text-sm">₪2,899</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-1 text-indigo-400"><Unlock size={11} /><span className="text-[9px] font-bold">לפתיחה</span></div>
+                      </div>
+
+                      <div className={`bg-white p-3.5 rounded-2xl flex justify-between items-center border border-dashed border-indigo-200 transition-all duration-500 delay-[1300ms] ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`}>
+                        <div className="flex items-center gap-3">
+                          <div className="w-7 h-7 rounded-full bg-indigo-50 flex items-center justify-center"><Target size={14} className="text-indigo-300" /></div>
+                          <div>
+                            <span className="text-[10px] text-slate-400 font-medium">60+ רוכשים</span>
+                            <p className="font-bold text-slate-500 text-sm">₪2,599</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-1 text-indigo-400"><Unlock size={11} /><span className="text-[9px] font-bold">לפתיחה</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+          </div>
+
+          {/* ═══ FEATURE 2: Community Fund ═══ */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+            {/* Explanation — first on mobile, left on desktop (RTL) */}
+            {(() => {
+              const [ref, isVisible] = useIntersectionObserver({ threshold: 0.2 });
+              return (
+                <div ref={ref} className={`lg:order-last transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-purple-50 text-purple-600 rounded-full text-xs font-bold mb-4">
+                    <Coins size={12} />
+                    מתוך עמוד הקהילה באפליקציה
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-black text-slate-900 mb-4 leading-tight">
+                    5% מכל רכישה הופכים
+                    <br />
+                    <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">לתקציב קהילתי אמיתי</span>
+                  </h3>
+                  <p className="text-slate-500 leading-relaxed mb-6">
+                    כל פעם שתושב קונה מוצר דרך UNION, 5% מסכום הרכישה עוברים אוטומטית לתקציב הקהילה. התושבים מצביעים ביחד על מה להשתמש בכסף — גן משחקים, חוגים, אירועים. הכל שקוף, הכל דמוקרטי.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <div className="flex items-center gap-2 text-sm text-slate-600 bg-white rounded-full px-4 py-2 border border-slate-100">
+                      <CheckCircle size={14} className="text-emerald-500" />
+                      5% מכל רכישה
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-slate-600 bg-white rounded-full px-4 py-2 border border-slate-100">
+                      <CheckCircle size={14} className="text-emerald-500" />
+                      הקהילה מצביעה
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-slate-600 bg-white rounded-full px-4 py-2 border border-slate-100">
+                      <CheckCircle size={14} className="text-emerald-500" />
+                      שקיפות מלאה
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* App component — second on mobile, right on desktop (RTL) */}
+            {(() => {
+              const [ref, isVisible] = useIntersectionObserver({ threshold: 0.15 });
+              return (
+                <div ref={ref} className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+                  <div className="space-y-4">
+                    {/* Fund Card — purple gradient like in the app */}
+                    <div className="bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-500 rounded-2xl p-5 relative overflow-hidden shadow-lg shadow-purple-500/10">
+                      <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-3xl" />
+                      <div className="absolute bottom-0 left-0 w-28 h-28 bg-white/5 rounded-full blur-2xl" />
+                      <div className="relative z-10">
+                        <div className="flex items-center gap-2 mb-3">
+                          <div className="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center">
+                            <Heart size={16} className="text-white" />
+                          </div>
+                          <div>
+                            <h3 className="text-white font-black text-sm">תקציב הקהילה</h3>
+                            <p className="text-white/60 text-[10px]">5% מכל רכישה נכנסים לכאן</p>
+                          </div>
+                        </div>
+                        <div className="text-white text-3xl font-black mb-1">₪12,340</div>
+                        <p className="text-white/50 text-xs mb-3">נצבר אוטומטית מרכישות התושבים</p>
+                        <div className="flex items-center gap-1.5 mb-3">
+                          <Target size={11} className="text-white/60" />
+                          <span className="text-white/70 text-xs">היעד: מגרש משחקים חדש — ₪50,000</span>
+                        </div>
+                        <div className="h-2.5 bg-white/20 rounded-full overflow-hidden">
+                          <div className={`h-full bg-white rounded-full transition-all duration-1500 ease-out ${isVisible ? 'w-[25%]' : 'w-0'}`} />
+                        </div>
+                        <div className="flex justify-between mt-1.5">
+                          <span className="text-white/40 text-[10px]">25% מהיעד</span>
+                          <span className="text-white/40 text-[10px]">חסרים עוד ₪37,660</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Goal voting */}
+                    <div className={`bg-white rounded-2xl p-5 border border-slate-200 shadow-lg shadow-slate-200/50 transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+                      <p className="text-xs font-bold text-purple-600 tracking-wide uppercase mb-3">התושבים מצביעים ליעד הבא</p>
+                      <div className="space-y-2">
+                        {[
+                          { icon: Flower2, label: 'גינה קהילתית', votes: 24, amount: 8200, target: 25000, color: 'bg-emerald-50', iconColor: 'text-emerald-500' },
+                          { icon: Wrench, label: 'שיפוץ מועדון', votes: 18, amount: 5400, target: 35000, color: 'bg-amber-50', iconColor: 'text-amber-500' },
+                          { icon: Users, label: 'אירוע שכונתי', votes: 12, amount: 3100, target: 15000, color: 'bg-purple-50', iconColor: 'text-purple-500' },
+                        ].map((goal, idx) => {
+                          const pct = Math.round((goal.amount / goal.target) * 100);
+                          return (
+                            <div key={idx} className={`w-full bg-white rounded-xl p-3 border border-slate-100 flex items-center gap-3 transition-all duration-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`} style={{ transitionDelay: `${600 + idx * 150}ms` }}>
+                              <div className={`w-9 h-9 rounded-xl ${goal.color} flex items-center justify-center flex-shrink-0`}>
+                                <goal.icon size={18} className={goal.iconColor} />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="text-sm font-bold text-slate-800 mb-1">{goal.label}</div>
+                                <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                                  <div className="h-full bg-purple-400 rounded-full" style={{ width: `${pct}%` }} />
+                                </div>
+                                <div className="text-[10px] text-slate-400 mt-0.5">₪{goal.amount.toLocaleString()} / ₪{goal.target.toLocaleString()}</div>
+                              </div>
+                              <div className="text-left flex-shrink-0">
+                                <div className="text-sm font-black text-purple-600">{goal.votes}</div>
+                                <div className="text-[10px] text-slate-400">הצבעות</div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
           </div>
         </div>
       </section>
