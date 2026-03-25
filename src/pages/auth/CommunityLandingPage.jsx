@@ -114,11 +114,11 @@ export default function CommunityLandingPage() {
           </div>
 
           {/* Main heading */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-black text-slate-900 mb-3 leading-[1.15] tracking-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-black text-slate-900 mb-3 leading-[1.15] tracking-tight">
             <span className="inline-block min-h-[1.15em]">{typedText}</span>
             <span className="inline-block w-[2px] h-8 sm:h-10 md:h-12 bg-indigo-500 mr-1 animate-pulse rounded-full" />
           </h1>
-          <p className="text-xl sm:text-2xl md:text-3xl font-black mb-5">
+          <p className="text-2xl sm:text-3xl md:text-4xl font-black mb-5">
             <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               לקהילה ולתושבים
             </span>
@@ -148,17 +148,15 @@ export default function CommunityLandingPage() {
           {/* Stats cards */}
           <div className="grid grid-cols-3 gap-3 sm:gap-4 max-w-xl md:max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.7s' }}>
             {[
-              { value: '40', suffix: '%', label: 'חיסכון ממוצע', icon: TrendingDown, color: 'bg-indigo-100 text-indigo-600' },
-              { value: '5', suffix: '%', label: 'חוזר לקהילה', icon: Coins, color: 'bg-purple-100 text-purple-600' },
-              { value: '0', suffix: '₪', label: 'עלות הצטרפות', icon: Unlock, color: 'bg-emerald-100 text-emerald-600' },
+              { value: '40', suffix: '%', label: 'חיסכון ממוצע', emoji: '📉' },
+              { value: '5', suffix: '%', label: 'חוזר לקהילה', emoji: '🏘️' },
+              { value: '0', suffix: '₪', label: 'עלות הצטרפות', emoji: '🎁' },
             ].map((stat, i) => {
               const [ref, isVisible] = useIntersectionObserver({ threshold: 0.3 });
               const count = useCountUp(parseInt(stat.value) || 0, isVisible, { duration: 2000 });
               return (
                 <div key={i} ref={ref} className="bg-slate-50 rounded-2xl p-4 sm:p-6 text-center border border-slate-100">
-                  <div className={`inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-xl ${stat.color} mb-3`}>
-                    <stat.icon size={20} strokeWidth={2.5} />
-                  </div>
+                  <div className="text-2xl sm:text-3xl mb-2">{stat.emoji}</div>
                   <div className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-none mb-1">
                     {stat.suffix === '₪' ? `₪${count}` : `${count}${stat.suffix}`}
                   </div>
@@ -177,7 +175,7 @@ export default function CommunityLandingPage() {
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
             <p className="text-indigo-600 font-bold text-sm mb-3 tracking-wide">הצצה לאפליקציה</p>
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight">
+            <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight">
               ככה זה נראה מבפנים
             </h2>
             <p className="text-slate-500 mt-3 max-w-lg mx-auto">שני הפיצ׳רים שמשנים את הכל — מחירים שיורדים ותקציב קהילתי שגדל</p>
@@ -194,7 +192,7 @@ export default function CommunityLandingPage() {
                     <TrendingDown size={12} />
                     מתוך דף המוצר באפליקציה
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-black text-slate-900 mb-4 leading-tight">
+                  <h3 className="text-3xl md:text-4xl font-black text-slate-900 mb-4 leading-tight">
                     ככל שיותר שכנים קונים —
                     <br />
                     <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">המחיר יורד לכולם</span>
@@ -310,7 +308,7 @@ export default function CommunityLandingPage() {
                     <Coins size={12} />
                     מתוך עמוד הקהילה באפליקציה
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-black text-slate-900 mb-4 leading-tight">
+                  <h3 className="text-3xl md:text-4xl font-black text-slate-900 mb-4 leading-tight">
                     5% מכל רכישה הופכים
                     <br />
                     <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">לתקציב קהילתי אמיתי</span>
@@ -440,7 +438,7 @@ export default function CommunityLandingPage() {
       <section className="max-w-6xl mx-auto px-4 md:px-8 py-20 md:py-32">
         <div className="text-center mb-16">
           <p className="text-indigo-600 font-bold text-sm mb-3 tracking-wide">למה UNION?</p>
-          <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight">
+          <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight">
             חיסכון אמיתי לכם,
             <br />
             <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">הכנסה אמיתית לקהילה</span>
@@ -456,7 +454,7 @@ export default function CommunityLandingPage() {
 
             <div className="relative z-10">
               <div className="text-xs font-bold text-indigo-300 tracking-widest uppercase mb-6">לתושבים</div>
-              <h3 className="text-3xl md:text-4xl font-black text-white mb-8 leading-tight">
+              <h3 className="text-4xl md:text-5xl font-black text-white mb-8 leading-tight">
                 קונים חכם,<br />חוסכים באמת
               </h3>
 
@@ -487,7 +485,7 @@ export default function CommunityLandingPage() {
 
             <div className="relative z-10">
               <div className="text-xs font-bold text-emerald-100 tracking-widest uppercase mb-6">בונוס → לקהילה</div>
-              <h3 className="text-3xl md:text-4xl font-black text-white mb-8 leading-tight">
+              <h3 className="text-4xl md:text-5xl font-black text-white mb-8 leading-tight">
                 כל רכישה בונה<br />את הקהילה שלכם
               </h3>
 
@@ -523,7 +521,7 @@ export default function CommunityLandingPage() {
         <div className="max-w-6xl mx-auto px-4 md:px-8 relative z-10">
           <div className="text-center mb-16">
             <p className="text-indigo-600 font-bold text-sm mb-3 tracking-wide">פשוט, מהיר, אמיתי</p>
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900">
+            <h2 className="text-4xl md:text-6xl font-black text-slate-900">
               3 צעדים להתחיל
             </h2>
           </div>
@@ -655,7 +653,7 @@ export default function CommunityLandingPage() {
           {/* Text side */}
           <div>
             <p className="text-emerald-600 font-bold text-sm mb-3 tracking-wide">הקרן הקהילתית</p>
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-tight">
+            <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 leading-tight">
               הכסף שלכם
               <br />
               <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">חוזר אליכם</span>
@@ -719,7 +717,7 @@ export default function CommunityLandingPage() {
         <div className="max-w-6xl mx-auto px-4 md:px-8 relative z-10">
           <div className="text-center mb-14">
             <p className="text-indigo-600 font-bold text-sm mb-3 tracking-wide">חוויות אמיתיות</p>
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900">
+            <h2 className="text-4xl md:text-6xl font-black text-slate-900">
               מה אומרים התושבים
             </h2>
           </div>
