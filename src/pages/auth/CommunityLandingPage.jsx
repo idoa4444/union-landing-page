@@ -145,19 +145,25 @@ export default function CommunityLandingPage() {
             </button>
           </div>
 
-          {/* Stats cards */}
+          {/* Stats */}
           <div className="grid grid-cols-3 gap-3 sm:gap-4 max-w-xl md:max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.7s' }}>
             {[
-              { value: '40', suffix: '%', label: 'חיסכון ממוצע', emoji: '📉' },
-              { value: '5', suffix: '%', label: 'חוזר לקהילה', emoji: '🏘️' },
-              { value: '0', suffix: '₪', label: 'עלות הצטרפות', emoji: '🎁' },
+              { value: '40', suffix: '%', label: 'חיסכון ממוצע', color: 'text-indigo-600' },
+              { value: '5', suffix: '%', label: 'חוזר לקהילה', color: 'text-purple-600' },
+              { value: '0', suffix: '₪', label: 'עלות הצטרפות', color: 'text-emerald-600' },
             ].map((stat, i) => {
               const [ref, isVisible] = useIntersectionObserver({ threshold: 0.3 });
               const count = useCountUp(parseInt(stat.value) || 0, isVisible, { duration: 2000 });
               return (
-                <div key={i} ref={ref} className="bg-slate-50 rounded-2xl p-4 sm:p-6 text-center border border-slate-100">
-                  <div className="text-2xl sm:text-3xl mb-2">{stat.emoji}</div>
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-none mb-1">
+                <div
+                  key={i}
+                  ref={ref}
+                  className={`rounded-2xl p-5 sm:p-7 text-center border border-slate-100 bg-white transition-all duration-700 ${
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                  }`}
+                  style={{ transitionDelay: `${i * 120}ms` }}
+                >
+                  <div className={`text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-none mb-2 ${stat.color}`}>
                     {stat.suffix === '₪' ? `₪${count}` : `${count}${stat.suffix}`}
                   </div>
                   <div className="text-xs sm:text-sm text-slate-400 font-medium">{stat.label}</div>
