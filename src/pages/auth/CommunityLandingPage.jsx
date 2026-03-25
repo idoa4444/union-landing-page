@@ -9,7 +9,7 @@ import {
   Package, Eye, Truck, Flower2, Wrench, ChevronDown,
 } from 'lucide-react';
 
-/* ── Looping Typing Animation Hook ── */
+/* ── Looping Phrase Swap Hook (RTL-safe) ── */
 const PHRASES = [
   'קונים ביחד, חוסכים ביחד',
   'מחירי יבואן לכל תושב',
@@ -19,46 +19,22 @@ const PHRASES = [
   'המחיר יורד ככל שמצטרפים',
 ];
 
-function useTypingLoop() {
-  const [text, setText] = useState(PHRASES[0]);
-  const phraseIdx = useRef(0);
-  const charIdx = useRef(0);
-  const isDeleting = useRef(false);
-  const isPaused = useRef(false);
+function usePhraseLoop() {
+  const [index, setIndex] = useState(0);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    let timeout;
-    const tick = () => {
-      const currentPhrase = PHRASES[phraseIdx.current];
-      if (isPaused.current) return;
-      if (!isDeleting.current) {
-        charIdx.current++;
-        setText(currentPhrase.slice(0, charIdx.current));
-        if (charIdx.current === currentPhrase.length) {
-          isPaused.current = true;
-          timeout = setTimeout(() => { isPaused.current = false; isDeleting.current = true; tick(); }, 2000);
-          return;
-        }
-        timeout = setTimeout(tick, 80);
-      } else {
-        charIdx.current--;
-        setText(currentPhrase.slice(0, charIdx.current));
-        if (charIdx.current === 0) {
-          isDeleting.current = false;
-          phraseIdx.current = (phraseIdx.current + 1) % PHRASES.length;
-          isPaused.current = true;
-          timeout = setTimeout(() => { isPaused.current = false; tick(); }, 500);
-          return;
-        }
-        timeout = setTimeout(tick, 40);
-      }
-    };
-    charIdx.current = PHRASES[0].length;
-    isPaused.current = true;
-    timeout = setTimeout(() => { isPaused.current = false; isDeleting.current = true; tick(); }, 2000);
-    return () => clearTimeout(timeout);
+    const interval = setInterval(() => {
+      setVisible(false);
+      setTimeout(() => {
+        setIndex(prev => (prev + 1) % PHRASES.length);
+        setVisible(true);
+      }, 400);
+    }, 3000);
+    return () => clearInterval(interval);
   }, []);
-  return text;
+
+  return { text: PHRASES[index], visible };
 }
 
 /* ── Animated counter ── */
@@ -76,7 +52,7 @@ function AnimatedStat({ value, suffix = '', label, light }) {
 }
 
 export default function CommunityLandingPage() {
-  const typedText = useTypingLoop();
+  const { text: currentPhrase, visible: phraseVisible } = usePhraseLoop();
 
   const fundCategories = [
     { name: 'תשתיות ושיפוצים', amount: '₪14,000', pct: 100, color: 'bg-indigo-500' },
@@ -115,8 +91,12 @@ export default function CommunityLandingPage() {
 
           {/* Main heading */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-black text-slate-900 mb-3 leading-[1.15] tracking-tight">
-            <span className="inline-block min-h-[1.15em]">{typedText}</span>
-            <span className="inline-block w-[2px] h-8 sm:h-10 md:h-12 bg-indigo-500 mr-1 animate-pulse rounded-full" />
+            <span
+              className="inline-block min-h-[1.15em] transition-all duration-300 ease-in-out"
+              style={{ opacity: phraseVisible ? 1 : 0, transform: phraseVisible ? 'translateY(0)' : 'translateY(8px)' }}
+            >
+              {currentPhrase}
+            </span>
           </h1>
           <p className="text-2xl sm:text-3xl md:text-4xl font-black mb-5">
             <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
