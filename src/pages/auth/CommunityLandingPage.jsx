@@ -303,36 +303,44 @@ export default function CommunityLandingPage() {
             })()}
           </div>
 
-          {/* ═══ FEATURE 2: Community Fund ═══ */}
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          FEATURE 2: Community Fund — Dark section
+          ══════════════════════════════════════════ */}
+      <section className="relative py-20 md:py-28 overflow-hidden">
+        <div className="absolute inset-0 mesh-gradient-dark" />
+        <div className="max-w-6xl mx-auto px-4 md:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
             {/* Explanation — first on mobile, left on desktop (RTL) */}
             {(() => {
               const [ref, isVisible] = useIntersectionObserver({ threshold: 0.2 });
               return (
                 <div ref={ref} className={`lg:order-last transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-purple-50 text-purple-600 rounded-full text-xs font-bold mb-4">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 text-purple-300 rounded-full text-xs font-bold mb-4">
                     <Coins size={12} />
                     מתוך עמוד הקהילה באפליקציה
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-black text-slate-900 mb-4 leading-tight">
+                  <h3 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">
                     5% מכל רכישה הופכים
                     <br />
-                    <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">לתקציב קהילתי אמיתי</span>
+                    <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">לתקציב קהילתי אמיתי</span>
                   </h3>
-                  <p className="text-slate-500 leading-relaxed mb-6">
+                  <p className="text-slate-400 leading-relaxed mb-6">
                     כל פעם שתושב קונה מוצר דרך האפליקציה, 5% מסכום הרכישה עוברים אוטומטית לתקציב הקהילה. התושבים מצביעים ביחד על מה להשתמש בכסף — גן משחקים, חוגים, אירועים. הכל שקוף, הכל דמוקרטי.
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <div className="flex items-center gap-2 text-sm text-slate-600 bg-white rounded-full px-4 py-2 border border-slate-100">
-                      <CheckCircle size={14} className="text-emerald-500" />
+                    <div className="flex items-center gap-2 text-sm text-slate-300 bg-white/5 rounded-full px-4 py-2 border border-white/10">
+                      <CheckCircle size={14} className="text-emerald-400" />
                       5% מכל רכישה
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-slate-600 bg-white rounded-full px-4 py-2 border border-slate-100">
-                      <CheckCircle size={14} className="text-emerald-500" />
+                    <div className="flex items-center gap-2 text-sm text-slate-300 bg-white/5 rounded-full px-4 py-2 border border-white/10">
+                      <CheckCircle size={14} className="text-emerald-400" />
                       הקהילה מצביעה
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-slate-600 bg-white rounded-full px-4 py-2 border border-slate-100">
-                      <CheckCircle size={14} className="text-emerald-500" />
+                    <div className="flex items-center gap-2 text-sm text-slate-300 bg-white/5 rounded-full px-4 py-2 border border-white/10">
+                      <CheckCircle size={14} className="text-emerald-400" />
                       שקיפות מלאה
                     </div>
                   </div>
