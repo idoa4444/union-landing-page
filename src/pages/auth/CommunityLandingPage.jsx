@@ -67,7 +67,7 @@ function AnimatedStat({ value, suffix = '', label, light }) {
   const count = useCountUp(parseInt(value) || 0, isVisible, { duration: 2000 });
   return (
     <div ref={ref} className="text-center">
-      <div className={`text-4xl sm:text-5xl md:text-5xl font-black tracking-tight ${light ? 'text-white' : 'text-slate-900'}`}>
+      <div className={`text-5xl sm:text-6xl md:text-6xl font-black tracking-tight ${light ? 'text-white' : 'text-slate-900'}`}>
         {count}{suffix}
       </div>
       <div className={`text-sm sm:text-sm mt-1.5 font-medium ${light ? 'text-white/60' : 'text-slate-400'}`}>{label}</div>
@@ -553,7 +553,7 @@ export default function CommunityLandingPage() {
                       <Icon size={24} className="text-white" />
                     </div>
 
-                    <h3 className="font-black text-slate-900 text-xl mb-3">{step.title}</h3>
+                    <h3 className="font-black text-slate-900 text-2xl mb-3">{step.title}</h3>
                     <p className="text-slate-500 leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
@@ -588,7 +588,7 @@ export default function CommunityLandingPage() {
                         <Icon size={22} className="text-white" />
                       </div>
                       <div>
-                        <h3 className="font-black text-slate-900 text-lg mb-1">{step.title}</h3>
+                        <h3 className="font-black text-slate-900 text-xl mb-1">{step.title}</h3>
                         <p className="text-sm text-slate-500 leading-relaxed">{step.desc}</p>
                       </div>
                     </div>
@@ -609,7 +609,7 @@ export default function CommunityLandingPage() {
         <div className="max-w-5xl mx-auto px-4 md:px-8 relative z-10">
           <div className="text-center mb-14">
             <p className="text-indigo-300 font-bold text-sm mb-3 tracking-wide">דוגמה אמיתית</p>
-            <h2 className="text-3xl md:text-5xl font-black text-white leading-tight">
+            <h2 className="text-4xl md:text-6xl font-black text-white leading-tight">
               מכונת כביסה Samsung
             </h2>
             <p className="text-slate-400 mt-3 text-lg">ככל שיותר שכנים מצטרפים — המחיר יורד</p>
@@ -770,7 +770,7 @@ export default function CommunityLandingPage() {
         <div className="absolute bottom-10 left-[20%] w-80 h-80 bg-purple-500/15 rounded-full blur-3xl animate-orb-slow" />
 
         <div className="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
             מוכנים להתחיל
             <br />
             <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">לחסוך כקהילה?</span>
