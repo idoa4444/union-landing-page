@@ -22,7 +22,7 @@ const PHRASES = [
 ];
 
 function useTypingLoop() {
-  const [text, setText] = useState('');
+  const [text, setText] = useState(PHRASES[0]);
   const phraseIdx = useRef(0);
   const charIdx = useRef(0);
   const isDeleting = useRef(false);
@@ -65,7 +65,13 @@ function useTypingLoop() {
       }
     };
 
-    timeout = setTimeout(tick, 600);
+    charIdx.current = PHRASES[0].length;
+    isPaused.current = true;
+    timeout = setTimeout(() => {
+      isPaused.current = false;
+      isDeleting.current = true;
+      tick();
+    }, 2000);
     return () => clearTimeout(timeout);
   }, []);
 
@@ -150,25 +156,24 @@ export default function CommunityLandingPage() {
   const navigate = useNavigate();
   const typedText = useTypingLoop();
 
-  const communities = ['כפר שמריהו', 'מושב בן עמי', 'קיבוץ יגור', 'מושב שורש', 'קיבוץ גבעת ברנר', 'מושב בית חנן', 'קיבוץ נען', 'מושב אביחיל'];
+  const communities = ['כפר שמריהו (85 משפחות)', 'מושב בן עמי (92 משפחות)', 'קיבוץ יגור (110 משפחות)', 'מושב שורש (64 משפחות)', 'קיבוץ גבעת ברנר (78 משפחות)', 'מושב בית חנן (55 משפחות)', 'קיבוץ נען (70 משפחות)', 'מושב אביחיל (48 משפחות)'];
 
   const steps = [
-    { num: '01', title: 'הקהילה נרשמת', desc: 'מנהל הקהילה פותח חשבון ומקבל קישור ייחודי לתושבים', icon: Globe },
-    { num: '02', title: 'תושבים מצטרפים', desc: 'כל תושב נכנס דרך הקישור, נרשם ב-30 שניות ורואה את החנות', icon: Users },
-    { num: '03', title: 'קונים ביחד', desc: 'התושבים בוחרים מוצרים. ככל שיותר מצטרפים — המחיר יורד לכולם', icon: ShoppingBag },
-    { num: '04', title: 'הקהילה מרוויחה', desc: '5% מכל רכישה נכנסים לקרן הקהילתית. המוצרים מגיעים עד הבית', icon: Heart },
+    { num: '01', title: 'נכנסים דרך הקישור', desc: 'קיבלתם קישור מהקהילה? נרשמים ב-30 שניות וזהו', icon: Globe },
+    { num: '02', title: 'בוחרים מוצרים במחירי יבואן', desc: 'אלפי מוצרים. ככל שיותר שכנים קונים — המחיר יורד', icon: ShoppingBag },
+    { num: '03', title: 'חוסכים ומרוויחים', desc: 'המוצרים מגיעים עד הבית. 5% חוזרים לקרן הקהילתית', icon: Heart },
   ];
 
   const residentBenefits = [
-    { icon: TrendingDown, title: 'מחירי יבואן ישיר', desc: 'אותם מוצרים שאתם מכירים — במחיר שחנויות משלמות ליבואנים' },
-    { icon: ShoppingBag, title: 'מגוון מוצרים רחב', desc: 'אלקטרוניקה, מוצרי בית, קוסמטיקה, מזון, ילדים — הכל במקום אחד' },
-    { icon: Shield, title: 'אחריות ומשלוח ישיר', desc: 'משלוח עד הבית, אחריות יבואן רשמי, שקוף ובטוח' },
+    { icon: TrendingDown, title: 'חיסכון של עד 40%', desc: 'על מוצרים שאתם כבר קונים — במחיר שחנויות משלמות ליבואנים' },
+    { icon: ShoppingBag, title: 'אלפי מוצרים, משלוח עד הבית', desc: 'אלקטרוניקה, מוצרי בית, קוסמטיקה, מזון — הכל במקום אחד' },
+    { icon: Shield, title: 'אחריות מלאה, בלי הפתעות', desc: 'אחריות יבואן רשמי, משלוח ישיר, הכל שקוף ובטוח' },
   ];
 
   const communityBenefits = [
-    { icon: Coins, title: '5% מכל רכישה לקרן', desc: 'כל קנייה של תושב מזרימה 5% לקרן הקהילתית — אוטומטית ושקוף' },
-    { icon: PieChart, title: 'שקיפות מלאה', desc: 'דשבורד בזמן אמת: כמה נצבר, איך הכסף מתחלק, ומה ההשפעה' },
-    { icon: Heart, title: 'חיזוק החיים הקהילתיים', desc: 'הקרן ממנה תשתיות, חינוך, בריאות, תרבות ואירועים' },
+    { icon: Coins, title: '5% מכל רכישה לקרן', desc: 'כל קנייה שלכם מזרימה 5% לקהילה — אוטומטית' },
+    { icon: PieChart, title: 'שקיפות מלאה', desc: 'רואים בדיוק כמה נצבר ולאן הכסף הולך' },
+    { icon: Heart, title: 'גן משחקים, חוגים, אירועים', desc: 'הקרן ממנה את מה שחשוב לכם — ואתם מחליטים' },
   ];
 
   const fundCategories = [
@@ -185,17 +190,12 @@ export default function CommunityLandingPage() {
         <div className="max-w-6xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
           <Logo variant="wordmark" height={28} className="cursor-pointer" onClick={() => window.location.href = 'https://union-os.vercel.app/'} />
           <div className="flex items-center gap-3">
+            <span className="text-xs text-emerald-600 font-medium hidden sm:block">✦ חינם לחלוטין</span>
             <button
-              onClick={() => window.location.href = 'https://union-os.vercel.app/join/MOSHAV-DEMO/welcome'}
-              className="text-sm text-slate-600 hover:text-indigo-600 font-medium transition hidden sm:block"
+              onClick={() => window.location.href = 'https://union-os.vercel.app/'}
+              className="bg-indigo-600 text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-indigo-700 transition shadow-glow"
             >
-              כניסת מנהל קהילה
-            </button>
-            <button
-              onClick={() => window.location.href = 'https://union-os.vercel.app/join/MOSHAV-DEMO/welcome'}
-              className="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-indigo-700 transition"
-            >
-              הצטרפו עכשיו
+              הצטרפו עכשיו — חינם
             </button>
           </div>
         </div>
@@ -208,8 +208,8 @@ export default function CommunityLandingPage() {
           <div className="text-center max-w-3xl mx-auto">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-50 text-orange-700 rounded-full text-sm font-medium mb-6 animate-fade-in border border-orange-100">
-              <TreePine size={16} />
-              פלטפורמת רכישה קבוצתית לקהילות
+              <Users size={16} />
+              כבר 8+ קהילות ו-500 משפחות חוסכות ביחד
             </div>
 
             {/* Typing Title */}
@@ -222,18 +222,17 @@ export default function CommunityLandingPage() {
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-8 leading-relaxed animate-fade-in" style={{ animationDelay: '1.5s' }}>
-              UNION מחברת בין קהילות לבין יבואנים ישירים. קנייה קבוצתית שמורידה מחירים
-              לכל תושב, ו-5% מכל רכישה חוזרים לקרן הקהילתית.
+            <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-8 leading-relaxed animate-fade-in" style={{ animationDelay: '0.5s' }}>
+              מוצרים במחירי יבואן. 5% מכל רכישה חוזרים לקהילה. בלי עלות, בלי התחייבות.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12 animate-fade-in" style={{ animationDelay: '2s' }}>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12 animate-fade-in" style={{ animationDelay: '0.8s' }}>
               <button
-                onClick={() => window.location.href = 'https://union-os.vercel.app/join/MOSHAV-DEMO/welcome'}
+                onClick={() => window.location.href = 'https://union-os.vercel.app/'}
                 className="bg-indigo-600 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-glow hover:bg-indigo-700 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2 w-full sm:w-auto justify-center"
               >
-                הצטרפו עם הקהילה שלך
+                הצטרפו — זה חינם
                 <ArrowLeft size={20} />
               </button>
               <button
@@ -261,11 +260,11 @@ export default function CommunityLandingPage() {
       {/* ── Community Names Marquee ── */}
       <section className="py-8 md:py-10 border-y border-slate-100 bg-slate-50/50 overflow-hidden">
         <p className="text-center text-xs text-slate-400 uppercase tracking-widest font-bold mb-4 md:mb-6">
-          קהילות שכבר חוסכות עם UNION
+          הצטרפו ל-500+ משפחות שכבר חוסכות
         </p>
         <div className="flex gap-4 md:gap-8 animate-[ticker-scroll_25s_linear_infinite]">
           {[...communities, ...communities, ...communities].map((name, i) => (
-            <div key={i} className="min-w-[100px] md:min-w-[120px] h-10 md:h-12 bg-white rounded-xl border border-slate-100 flex items-center justify-center text-slate-400 font-bold text-xs md:text-sm flex-shrink-0">
+            <div key={i} className="min-w-[160px] md:min-w-[200px] h-10 md:h-12 bg-white rounded-xl border border-slate-100 flex items-center justify-center text-slate-400 font-bold text-xs md:text-sm flex-shrink-0 px-3">
               {name}
             </div>
           ))}
@@ -276,10 +275,10 @@ export default function CommunityLandingPage() {
       <section className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-24">
         <div className="text-center mb-14">
           <h2 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
-            פלטפורמה אחת, ערך כפול
+            מה יוצא לכם מזה?
           </h2>
           <p className="text-slate-500 max-w-2xl mx-auto">
-            UNION יוצרת WIN-WIN — התושבים חוסכים על מוצרים, והקהילה בונה קרן מכל רכישה
+            אתם חוסכים על מוצרים, והקהילה שלכם מרוויחה מכל רכישה
           </p>
         </div>
 
@@ -313,12 +312,12 @@ export default function CommunityLandingPage() {
             <div className="relative z-10">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/15 text-white/90 rounded-full text-xs font-medium mb-5">
                 <Building size={14} />
-                לקהילה
+                בונוס לקהילה
               </div>
               <h3 className="text-2xl md:text-3xl font-black text-white mb-6">
-                להרוויח מכל רכישה,
+                וגם — הקהילה שלך
                 <br />
-                לבנות קרן קהילתית
+                מרוויחה מכל רכישה
               </h3>
               <div className="space-y-5">
                 {communityBenefits.map((b, i) => (
@@ -335,10 +334,10 @@ export default function CommunityLandingPage() {
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
-              למה קהילות בוחרות ב-UNION?
+              למה כולם מצטרפים?
             </h2>
             <p className="text-slate-500 max-w-xl mx-auto">
-              הפלטפורמה שמשנה את הדרך שבה קהילות קונות — ביחד
+              הקהילה שלכם כבר שם — הנה למה
             </p>
           </div>
 
@@ -346,44 +345,30 @@ export default function CommunityLandingPage() {
             <BentoStatCard
               value="40"
               suffix="%"
-              label="חיסכון ממוצע על מוצרי פרימיום"
+              label="חיסכון על מוצרים שאתם כבר קונים"
               gradient="bg-gradient-to-br from-indigo-500 to-purple-600"
               index={0}
             />
             <BentoFeatureCard
               icon={Users}
-              title="קנייה קבוצתית דינמית"
-              desc="ככל שיותר תושבים מצטרפים לרכישה — המחיר יורד לכולם. כוח קנייה אמיתי."
+              title="ככל שיותר שכנים קונים — המחיר יורד"
+              desc="קנייה קבוצתית אמיתית. אתם לא לבד — כוח הקנייה של כל הקהילה עובד בשבילכם."
               iconBg="bg-gradient-to-br from-indigo-500 to-indigo-600"
               index={1}
             />
             <BentoFeatureCard
               icon={Coins}
-              title="קרן קהילתית אוטומטית"
-              desc="5% מכל רכישה מופרשים אוטומטית לקרן. ללא ניהול, ללא בירוקרטיה."
+              title="5% מכל רכישה חוזרים לקהילה"
+              desc="אוטומטית, בלי בירוקרטיה. כל קנייה שלכם בונה את הקהילה."
               iconBg="bg-gradient-to-br from-orange-500 to-orange-600"
               index={2}
             />
             <BentoStatCard
               value="38"
               suffix="K₪"
-              label="לקרן בשנה (80 משפחות)"
+              label="זה מה ש-80 משפחות מייצרות בשנה לקהילה"
               gradient="bg-gradient-to-br from-emerald-500 to-teal-600"
               index={3}
-            />
-            <BentoFeatureCard
-              icon={Eye}
-              title="שקיפות מלאה בזמן אמת"
-              desc="כל תושב רואה כמה נצבר בקרן, על מה הכסף הולך, ומה ההשפעה שלו."
-              iconBg="bg-gradient-to-br from-emerald-500 to-emerald-600"
-              index={4}
-            />
-            <BentoFeatureCard
-              icon={Zap}
-              title="הקמה ב-5 דקות"
-              desc="מנהל הקהילה נרשם, שולח קישור לתושבים — וזהו. ללא התקנה, ללא עלות."
-              iconBg="bg-gradient-to-br from-amber-500 to-orange-500"
-              index={5}
             />
           </div>
         </div>
@@ -396,13 +381,13 @@ export default function CommunityLandingPage() {
             <h2 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
               איך זה עובד?
             </h2>
-            <p className="text-slate-500">4 צעדים פשוטים להתחיל לחסוך כקהילה</p>
+            <p className="text-slate-500">3 צעדים פשוטים להתחיל לחסוך</p>
           </div>
 
           {/* Desktop Timeline */}
           <div className="hidden lg:block relative">
-            <div className="absolute top-10 right-[12.5%] left-[12.5%] h-0.5 bg-gradient-to-l from-indigo-300 via-purple-300 to-indigo-300 rounded-full" />
-            <div className="grid grid-cols-4 gap-6 relative">
+            <div className="absolute top-10 right-[16.5%] left-[16.5%] h-0.5 bg-gradient-to-l from-indigo-300 via-purple-300 to-indigo-300 rounded-full" />
+            <div className="grid grid-cols-3 gap-6 relative">
               {steps.map((step, i) => {
                 const [ref, isVisible] = useIntersectionObserver({ threshold: 0.2 });
                 const Icon = step.icon;
@@ -452,7 +437,7 @@ export default function CommunityLandingPage() {
                     <span className="absolute -top-1.5 -right-1.5 w-6 h-6 bg-indigo-600 text-white rounded-lg flex items-center justify-center text-[10px] font-black">
                       {step.num.replace('0', '')}
                     </span>
-                    {i < 3 && (
+                    {i < 2 && (
                       <div className="absolute top-14 right-1/2 translate-x-1/2 w-0.5 h-6 bg-indigo-200" />
                     )}
                   </div>
@@ -472,10 +457,13 @@ export default function CommunityLandingPage() {
         <div className="bg-gradient-to-br from-slate-900 to-indigo-900 rounded-2xl md:rounded-[2rem] p-6 md:p-12 text-white relative overflow-hidden">
           <div className="relative z-10">
             <h2 className="text-2xl md:text-3xl font-black mb-3 text-center">
-              הקרן הקהילתית בפעולה
+              כמה תחסכו?
             </h2>
+            <p className="text-emerald-200 text-center mb-2 text-lg font-bold">
+              חיסכון ממוצע למשפחה: ₪3,600 בשנה
+            </p>
             <p className="text-indigo-200 text-center mb-10 max-w-lg mx-auto">
-              הנה החישוב הפשוט — כל רכישה של תושב בונה את הקהילה
+              ובנוסף — ₪38,400 חוזרים לקהילה שלכם בשנה
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-2xl mx-auto">
@@ -503,7 +491,7 @@ export default function CommunityLandingPage() {
             {/* Progress bar */}
             <div className="max-w-lg mx-auto mt-8">
               <div className="flex justify-between mb-1.5 text-xs text-indigo-300">
-                <span>תושבים שהצטרפו</span>
+                <span>64 מתוך 80 משפחות כבר הצטרפו — אל תישארו בחוץ!</span>
                 <span>64/80</span>
               </div>
               <div className="relative h-3 bg-white/10 rounded-full overflow-hidden">
@@ -527,21 +515,20 @@ export default function CommunityLandingPage() {
                 קרן קהילתית
               </div>
               <h2 className="text-2xl md:text-4xl font-black text-slate-900 mb-4 leading-tight">
-                הכסף חוזר
+                הכסף שלכם
                 <br />
                 <span className="highlight-mark bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                  לקהילה שלכם
+                  חוזר אליכם
                 </span>
               </h2>
               <p className="text-slate-500 mb-6 leading-relaxed">
-                הקרן הקהילתית ממומנת אוטומטית מכל רכישה. ועד הקהילה מחליט איך לחלק
-                אותה — בשקיפות מלאה לכל התושבים.
+                תארו לעצמכם — גן משחקים חדש, חוגים לילדים, אירועי קהילה — ממומן מקניות שגם ככה עשיתם.
               </p>
               <div className="space-y-3">
                 {[
-                  'תשתיות ושיפוצים — גינות, מגרשים, מבני ציבור',
-                  'חינוך — חוגים, סדנאות, ספרייה קהילתית',
-                  'אירועים — חגים, שבתות קהילתיות, פסטיבלים',
+                  'תשתיות — גינות, מגרשים, שיפוצים',
+                  'חינוך — חוגים וסדנאות לילדים',
+                  'אירועים — חגים, שבתות, פסטיבלים',
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-2.5 text-sm text-slate-700">
                     <CheckCircle size={18} className="text-emerald-500 flex-shrink-0" />
@@ -585,15 +572,15 @@ export default function CommunityLandingPage() {
         <div className="bg-gradient-to-br from-slate-900 to-indigo-900 rounded-2xl md:rounded-[2rem] p-6 md:p-12 text-white relative overflow-hidden">
           <div className="relative z-10">
             <h2 className="text-2xl md:text-3xl font-black mb-3 text-center">
-              דוגמה לחיסכון בפעולה
+              מכונת כביסה Samsung — דוגמה אמיתית
             </h2>
             <p className="text-indigo-200 text-center mb-10 max-w-lg mx-auto">
-              ככל שיותר תושבים מצטרפים לרכישה — המחיר יורד לכולם
+              ככל שיותר שכנים מצטרפים — המחיר יורד לכולם
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-2xl mx-auto">
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/10">
-                <div className="text-sm text-indigo-200 mb-2">מחיר קמעונאי</div>
+                <div className="text-sm text-indigo-200 mb-2">מחיר בחנויות</div>
                 <div className="text-3xl font-black line-through decoration-red-400/60">₪4,999</div>
               </div>
               <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20 ring-2 ring-indigo-400/30">
@@ -602,7 +589,7 @@ export default function CommunityLandingPage() {
                 <div className="mt-1 text-xs bg-emerald-500/30 text-emerald-200 px-2 py-0.5 rounded-full inline-block">עם 60+ קונים</div>
               </div>
               <div className="bg-emerald-500/20 backdrop-blur-sm rounded-2xl p-6 text-center border border-emerald-400/30">
-                <div className="text-sm text-emerald-200 mb-2">חוסך</div>
+                <div className="text-sm text-emerald-200 mb-2">חוסכים</div>
                 <div className="text-3xl font-black text-emerald-300">₪1,800</div>
                 <div className="mt-1 text-xs text-emerald-200">36% הנחה</div>
               </div>
@@ -611,12 +598,18 @@ export default function CommunityLandingPage() {
             {/* Progress bar */}
             <div className="max-w-lg mx-auto mt-8">
               <div className="flex justify-between mb-1.5 text-xs text-indigo-300">
-                <span>תושבים ברכישה הנוכחית</span>
-                <span>48/60 ליעד הבא</span>
+                <span>עוד 12 קונים — והמחיר יורד שוב!</span>
+                <span>48/60</span>
               </div>
               <div className="relative h-3 bg-white/10 rounded-full overflow-hidden">
                 <div className="absolute top-0 bottom-0 left-0 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full w-[80%]" />
               </div>
+              <button
+                onClick={() => window.location.href = 'https://union-os.vercel.app/join/MOSHAV-DEMO/welcome'}
+                className="mt-4 text-sm text-indigo-300 hover:text-white transition font-medium"
+              >
+                הצטרפו והמחיר ירד ←
+              </button>
             </div>
           </div>
           <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full blur-3xl" />
@@ -627,14 +620,15 @@ export default function CommunityLandingPage() {
       {/* ── Testimonials ── */}
       <section className="bg-slate-50 py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl font-black text-slate-900 text-center mb-10">
-            מה אומרים עלינו
+          <h2 className="text-2xl md:text-3xl font-black text-slate-900 text-center mb-2">
+            מצטרפים ל-500+ משפחות מרוצות
           </h2>
+          <p className="text-slate-500 text-center mb-10">הנה מה שהם אומרים</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { name: 'יוסי מ.', role: 'מזכיר מושב', company: 'מושב בן עמי', text: 'תוך חודשיים הקרן שלנו צברה מספיק כסף לשפץ את גן המשחקים. התושבים מרוצים והכל שקוף.', rating: 5, accent: 'border-r-indigo-500' },
-              { name: 'רונית ש.', role: 'תושבת', company: 'קיבוץ יגור', text: 'קניתי מכונת כביסה ב-40% פחות ממה שראיתי באינטרנט. וגם ידעתי שחלק מהכסף חוזר לקהילה.', rating: 5, accent: 'border-r-purple-500' },
-              { name: 'אבי ד.', role: 'יו"ר ועד', company: 'מושב שורש', text: 'הפלטפורמה חסכה לנו עשרות שעות של ניהול רכישות. הכל אוטומטי, שקוף, והתושבים פשוט אוהבים את זה.', rating: 5, accent: 'border-r-emerald-500' },
+              { name: 'רונית ש.', role: 'תושבת', company: 'קיבוץ יגור', text: 'קניתי מכונת כביסה ב-40% פחות. וחלק מהכסף חזר לקהילה.', rating: 5, accent: 'border-r-purple-500' },
+              { name: 'יוסי מ.', role: 'מזכיר מושב', company: 'מושב בן עמי', text: 'תוך חודשיים הקרן צברה מספיק לשפץ את גן המשחקים.', rating: 5, accent: 'border-r-indigo-500' },
+              { name: 'אבי ד.', role: 'יו"ר ועד', company: 'מושב שורש', text: 'הכל אוטומטי ושקוף. התושבים פשוט אוהבים את זה.', rating: 5, accent: 'border-r-emerald-500' },
             ].map((t, i) => {
               const [ref, isVisible] = useIntersectionObserver({ threshold: 0.2 });
               return (
@@ -681,7 +675,7 @@ export default function CommunityLandingPage() {
           הצטרפו עם הקהילה שלכם. חיסכון לתושבים, הכנסה לקהילה, ושקיפות מלאה.
         </p>
         <button
-          onClick={() => window.location.href = 'https://union-os.vercel.app/join/MOSHAV-DEMO/welcome'}
+          onClick={() => window.location.href = 'https://union-os.vercel.app/'}
           className="bg-indigo-600 text-white px-10 py-4 rounded-2xl font-bold text-lg shadow-glow hover:bg-indigo-700 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2 mx-auto"
         >
           הצטרפו עם הקהילה שלך
