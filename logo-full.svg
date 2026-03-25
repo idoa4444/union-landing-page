@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 110" fill="none">
+  <!-- U - purple rounded open-top -->
+  <path d="M8 4 L8 70 C8 96 28 106 52 106 L68 106 C92 106 112 96 112 70 L112 4"
+        stroke="#8B5CF6" stroke-width="16" stroke-linecap="round" fill="none"/>
+  <!-- N -->
+  <path d="M132 102 L132 8 L210 102 L210 8"
+        stroke="#1a1a1a" stroke-width="16" stroke-linejoin="miter" stroke-linecap="square" fill="none"/>
+  <!-- I -->
+  <rect x="234" y="8" width="14" height="94" fill="#1a1a1a"/>
+  <!-- O - rounded rectangle -->
+  <rect x="268" y="8" width="90" height="94" rx="22" stroke="#1a1a1a" stroke-width="16" fill="none"/>
+  <!-- N -->
+  <path d="M382 102 L382 8 L460 102 L460 8"
+        stroke="#1a1a1a" stroke-width="16" stroke-linejoin="miter" stroke-linecap="square" fill="none"/>
+</svg>
