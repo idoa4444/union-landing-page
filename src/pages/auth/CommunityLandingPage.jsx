@@ -907,23 +907,9 @@ export default function CommunityLandingPage() {
               { q: 'מה קורה עם האחריות?', a: 'כל מוצר מגיע עם אחריות יבואן רשמי מלאה. שירות, החלפות, תיקונים — הכל כמו שאתם מכירים, בלי פשרות.' },
               { q: 'איך עובדת הקרן הקהילתית?', a: '5% מכל רכישה של תושב עוברים אוטומטית לתקציב הקהילה. התושבים מצביעים ביחד על מה להשתמש בכסף — תשתיות, חינוך, אירועים. הכל שקוף בדשבורד.' },
               { q: 'אפשר לבטל?', a: 'כן, בכל רגע. אין התחייבות, אין תקופת מינימום. פשוט מפסיקים להשתמש.' },
-            ].map((item, i) => {
-              const [open, setOpen] = useState(false);
-              return (
-                <div key={i}>
-                  <button
-                    onClick={() => setOpen(!open)}
-                    className="w-full flex items-center justify-between px-6 py-5 text-right hover:bg-slate-50 transition-colors"
-                  >
-                    <span className="font-bold text-slate-900 text-base">{item.q}</span>
-                    <ChevronDown size={18} className={`text-slate-400 flex-shrink-0 mr-3 transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
-                  </button>
-                  <div className={`overflow-hidden transition-all duration-300 ${open ? 'max-h-48' : 'max-h-0'}`}>
-                    <p className="px-6 pb-5 text-sm text-slate-500 leading-relaxed">{item.a}</p>
-                  </div>
-                </div>
-              );
-            })}
+            ].map((item, i) => (
+              <FaqItem key={i} q={item.q} a={item.a} />
+            ))}
           </div>
         </div>
       </section>
