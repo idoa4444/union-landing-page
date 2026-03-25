@@ -3,10 +3,10 @@ import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import useCountUp from '../../hooks/useCountUp';
 import Logo from '../../components/shared/Logo';
 import {
-  ArrowLeft, Shield, TrendingDown, Users,
-  CheckCircle, Globe, Building, Heart,
-  PieChart, ShoppingBag, Coins, Sparkles,
-  Package, Eye, CreditCard, Truck,
+  ArrowLeft, TrendingDown, Users,
+  CheckCircle, Globe, Heart,
+  ShoppingBag, Coins,
+  Package, Eye, Truck,
 } from 'lucide-react';
 
 /* ── Looping Typing Animation Hook ── */
