@@ -104,60 +104,64 @@ export default function CommunityLandingPage() {
       </header>
 
       {/* ══════════════════════════════════════════
-          HERO — Mesh gradient + floating orbs
+          HERO
           ══════════════════════════════════════════ */}
-      <section className="relative min-h-[85vh] md:min-h-[90vh] flex items-center overflow-hidden bg-white">
-
-        <div className="max-w-5xl mx-auto px-4 md:px-8 relative z-10 text-center">
+      <section className="bg-white pt-16 md:pt-24 pb-20 md:pb-28">
+        <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 rounded-full text-sm font-medium mb-8 animate-fade-in text-slate-600 border border-slate-200">
-            <Users size={14} className="text-indigo-600" />
-            פלטפורמת הקנייה הקבוצתית לקהילות
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-50 rounded-full text-sm font-medium mb-8 animate-fade-in text-indigo-600">
+            קנייה קבוצתית חכמה לקהילות
           </div>
 
           {/* Main heading */}
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 mb-2 leading-[1.05] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-black text-slate-900 mb-3 leading-[1.15] tracking-tight">
             <span className="inline-block min-h-[1.15em]">{typedText}</span>
-            <span className="inline-block w-[3px] h-9 sm:h-12 md:h-16 lg:h-20 bg-indigo-500 mr-1 animate-pulse rounded-full" />
+            <span className="inline-block w-[2px] h-8 sm:h-10 md:h-12 bg-indigo-500 mr-1 animate-pulse rounded-full" />
           </h1>
-          <p className="text-2xl sm:text-3xl md:text-4xl font-black mb-6">
-            <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+          <p className="text-xl sm:text-2xl md:text-3xl font-black mb-5">
+            <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               לקהילה ולתושבים
             </span>
           </p>
 
-          <p className="text-lg md:text-xl text-slate-500 max-w-xl mx-auto mb-10 leading-relaxed animate-fade-in font-medium" style={{ animationDelay: '0.3s' }}>
+          <p className="text-base md:text-lg text-slate-500 max-w-md mx-auto mb-8 leading-relaxed animate-fade-in" style={{ animationDelay: '0.3s' }}>
             מוצרים במחירי יבואן. 5% מכל רכישה חוזרים לקהילה.
-            <br className="hidden sm:block" />
+            <br />
             בלי עלות, בלי התחייבות.
           </p>
 
           {/* CTA */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-16 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-14 animate-fade-in" style={{ animationDelay: '0.5s' }}>
             <button
               onClick={() => window.location.href = 'https://app.union-il.com/join/MOSHAV-DEMO/welcome'}
-              className="group bg-slate-900 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-800 transition-all active:scale-[0.97] flex items-center gap-2 w-full sm:w-auto justify-center shadow-xl shadow-slate-900/20"
+              className="group bg-slate-900 text-white px-7 py-3.5 rounded-full font-bold text-base hover:bg-slate-800 transition-all active:scale-[0.97] flex items-center gap-2 w-full sm:w-auto justify-center"
             >
               הצטרפו — זה חינם
-              <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+              <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
             </button>
             <button
               onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-slate-500 px-8 py-4 rounded-full font-medium text-lg hover:text-slate-900 transition w-full sm:w-auto"
+              className="text-slate-400 px-7 py-3.5 rounded-full font-medium text-base hover:text-slate-700 transition w-full sm:w-auto"
             >
               איך זה עובד? ↓
             </button>
           </div>
 
-          {/* Stats strip */}
-          <div className="glass-card rounded-2xl p-6 md:p-8 inline-flex items-center gap-6 sm:gap-8 md:gap-14 animate-fade-in" style={{ animationDelay: '0.9s' }}>
-            <AnimatedStat value="40" suffix="%" label="חיסכון ממוצע" />
-            <div className="w-px h-12 bg-slate-200" />
-            <AnimatedStat value="5" suffix="%" label="חוזר לקהילה" />
-            <div className="w-px h-12 bg-slate-200" />
+          {/* Stats */}
+          <div className="flex items-center justify-center gap-8 sm:gap-12 animate-fade-in" style={{ animationDelay: '0.7s' }}>
             <div className="text-center">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-emerald-600">₪0</div>
-              <div className="text-xs sm:text-sm mt-1.5 font-medium text-slate-400">עלות הצטרפות</div>
+              <div className="text-2xl sm:text-3xl font-black text-slate-900">40%</div>
+              <div className="text-xs text-slate-400 mt-1 font-medium">חיסכון ממוצע</div>
+            </div>
+            <div className="w-px h-10 bg-slate-200" />
+            <div className="text-center">
+              <div className="text-2xl sm:text-3xl font-black text-slate-900">5%</div>
+              <div className="text-xs text-slate-400 mt-1 font-medium">חוזר לקהילה</div>
+            </div>
+            <div className="w-px h-10 bg-slate-200" />
+            <div className="text-center">
+              <div className="text-2xl sm:text-3xl font-black text-emerald-600">₪0</div>
+              <div className="text-xs text-slate-400 mt-1 font-medium">עלות הצטרפות</div>
             </div>
           </div>
         </div>
