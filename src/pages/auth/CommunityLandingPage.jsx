@@ -93,9 +93,9 @@ export default function CommunityLandingPage() {
           ══════════════════════════════════════════ */}
       <header className="bg-white/70 backdrop-blur-xl border-b border-slate-100/50 sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 md:px-8 py-3.5 flex items-center justify-between">
-          <Logo variant="wordmark" height={28} className="cursor-pointer" onClick={() => window.location.href = 'https://union-os.vercel.app/'} />
+          <Logo variant="wordmark" height={28} className="cursor-pointer" onClick={() => window.location.href = 'https://app.union-il.com/'} />
           <button
-            onClick={() => window.location.href = 'https://union-os.vercel.app/join/MOSHAV-DEMO/welcome'}
+            onClick={() => window.location.href = 'https://app.union-il.com/join/MOSHAV-DEMO/welcome'}
             className="bg-slate-900 text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-slate-800 transition-all active:scale-[0.97]"
           >
             להצטרפות
@@ -106,20 +106,12 @@ export default function CommunityLandingPage() {
       {/* ══════════════════════════════════════════
           HERO — Mesh gradient + floating orbs
           ══════════════════════════════════════════ */}
-      <section className="relative min-h-[85vh] md:min-h-[90vh] flex items-center overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 mesh-gradient" />
-        <div className="absolute inset-0 dot-grid opacity-40" />
-
-        {/* Floating orbs */}
-        <div className="absolute top-20 right-[10%] w-72 h-72 bg-indigo-400/20 rounded-full blur-3xl animate-orb" />
-        <div className="absolute bottom-20 left-[15%] w-96 h-96 bg-purple-400/15 rounded-full blur-3xl animate-orb-slow" />
-        <div className="absolute top-1/2 left-[50%] w-64 h-64 bg-emerald-400/10 rounded-full blur-3xl animate-orb" />
+      <section className="relative min-h-[85vh] md:min-h-[90vh] flex items-center overflow-hidden bg-white">
 
         <div className="max-w-5xl mx-auto px-4 md:px-8 relative z-10 text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-full text-sm font-medium mb-8 animate-fade-in text-slate-600">
-            <Sparkles size={15} className="text-indigo-500" />
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 rounded-full text-sm font-medium mb-8 animate-fade-in text-slate-600 border border-slate-200">
+            <Users size={14} className="text-indigo-600" />
             פלטפורמת הקנייה הקבוצתית לקהילות
           </div>
 
@@ -143,7 +135,7 @@ export default function CommunityLandingPage() {
           {/* CTA */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-16 animate-fade-in" style={{ animationDelay: '0.6s' }}>
             <button
-              onClick={() => window.location.href = 'https://union-os.vercel.app/join/MOSHAV-DEMO/welcome'}
+              onClick={() => window.location.href = 'https://app.union-il.com/join/MOSHAV-DEMO/welcome'}
               className="group bg-slate-900 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-800 transition-all active:scale-[0.97] flex items-center gap-2 w-full sm:w-auto justify-center shadow-xl shadow-slate-900/20"
             >
               הצטרפו — זה חינם
@@ -394,7 +386,7 @@ export default function CommunityLandingPage() {
 
           <div className="text-center">
             <button
-              onClick={() => window.location.href = 'https://union-os.vercel.app/join/MOSHAV-DEMO/welcome'}
+              onClick={() => window.location.href = 'https://app.union-il.com/join/MOSHAV-DEMO/welcome'}
               className="bg-white text-slate-900 px-8 py-3.5 rounded-full font-bold hover:bg-slate-100 transition-all active:scale-[0.97] shadow-xl shadow-black/20"
             >
               רוצים לראות עוד מחירים? הצטרפו →
@@ -538,7 +530,7 @@ export default function CommunityLandingPage() {
             חיסכון לכם, הכנסה לקהילה, שקיפות מלאה. בלי סיבה לחכות.
           </p>
           <button
-            onClick={() => window.location.href = 'https://union-os.vercel.app/join/MOSHAV-DEMO/welcome'}
+            onClick={() => window.location.href = 'https://app.union-il.com/join/MOSHAV-DEMO/welcome'}
             className="group bg-white text-slate-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-slate-100 transition-all active:scale-[0.97] shadow-2xl shadow-black/30 flex items-center gap-2 mx-auto"
           >
             הצטרפו עכשיו — חינם
