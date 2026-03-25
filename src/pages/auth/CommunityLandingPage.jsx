@@ -67,10 +67,10 @@ function AnimatedStat({ value, suffix = '', label, light }) {
   const count = useCountUp(parseInt(value) || 0, isVisible, { duration: 2000 });
   return (
     <div ref={ref} className="text-center">
-      <div className={`text-3xl sm:text-4xl md:text-5xl font-black tracking-tight ${light ? 'text-white' : 'text-slate-900'}`}>
+      <div className={`text-4xl sm:text-5xl md:text-5xl font-black tracking-tight ${light ? 'text-white' : 'text-slate-900'}`}>
         {count}{suffix}
       </div>
-      <div className={`text-xs sm:text-sm mt-1.5 font-medium ${light ? 'text-white/60' : 'text-slate-400'}`}>{label}</div>
+      <div className={`text-sm sm:text-sm mt-1.5 font-medium ${light ? 'text-white/60' : 'text-slate-400'}`}>{label}</div>
     </div>
   );
 }
@@ -146,17 +146,12 @@ export default function CommunityLandingPage() {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.7s' }}>
-            {[
-              { value: '40%', label: 'חיסכון ממוצע', accent: 'text-indigo-400' },
-              { value: '5%', label: 'חוזר לקהילה', accent: 'text-purple-400' },
-              { value: '₪0', label: 'עלות הצטרפות', accent: 'text-emerald-400' },
-            ].map((stat, i) => (
-              <div key={i} className="rounded-2xl p-4 sm:p-6 text-center border border-white/10 shadow-lg hover:shadow-xl hover:border-white/20 transition-all duration-300" style={{ background: 'linear-gradient(145deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%)' }}>
-                <div className="text-4xl sm:text-5xl font-black text-white mb-2">{stat.value}</div>
-                <div className={`text-sm sm:text-base ${stat.accent} font-medium`}>{stat.label}</div>
-              </div>
-            ))}
+          <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-12 animate-fade-in" style={{ animationDelay: '0.7s' }}>
+            <AnimatedStat value="40" suffix="%" label="חיסכון ממוצע" />
+            <div className="w-px h-10 sm:h-14 bg-slate-200" />
+            <AnimatedStat value="5" suffix="%" label="לקרן הקהילה" />
+            <div className="w-px h-10 sm:h-14 bg-slate-200" />
+            <AnimatedStat value="0" suffix="₪" label="עלות הצטרפות" />
           </div>
         </div>
       </section>
@@ -307,7 +302,7 @@ export default function CommunityLandingPage() {
                     <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">לתקציב קהילתי אמיתי</span>
                   </h3>
                   <p className="text-slate-500 leading-relaxed mb-6">
-                    כל פעם שתושב קונה מוצר דרך UNION, 5% מסכום הרכישה עוברים אוטומטית לתקציב הקהילה. התושבים מצביעים ביחד על מה להשתמש בכסף — גן משחקים, חוגים, אירועים. הכל שקוף, הכל דמוקרטי.
+                    כל פעם שתושב קונה מוצר דרך האפליקציה, 5% מסכום הרכישה עוברים אוטומטית לתקציב הקהילה. התושבים מצביעים ביחד על מה להשתמש בכסף — גן משחקים, חוגים, אירועים. הכל שקוף, הכל דמוקרטי.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <div className="flex items-center gap-2 text-sm text-slate-600 bg-white rounded-full px-4 py-2 border border-slate-100">
@@ -404,22 +399,26 @@ export default function CommunityLandingPage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          TRUST STRIP — minimal, elegant
+          TRUST STRIP
           ══════════════════════════════════════════ */}
-      <section className="border-b border-slate-100">
-        <div className="max-w-5xl mx-auto px-4 py-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-slate-400 text-sm">
-          {[
-            'מאובטח ומוצפן',
-            'מחירי יבואן ישיר',
-            '5% לקרן הקהילה',
-            'ללא עלות הצטרפות',
-            'משלוח עד הבית',
-          ].map((item, i) => (
-            <React.Fragment key={i}>
-              {i > 0 && <span className="hidden sm:block w-1 h-1 rounded-full bg-slate-300" />}
-              <span className="font-medium">{item}</span>
-            </React.Fragment>
-          ))}
+      <section className="bg-slate-50/80 border-y border-slate-100">
+        <div className="max-w-5xl mx-auto px-4 py-8 md:py-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-6">
+            {[
+              { icon: CheckCircle, text: 'מאובטח ומוצפן', color: 'text-indigo-500', bg: 'bg-indigo-50' },
+              { icon: Globe, text: 'מחירי יבואן ישיר', color: 'text-purple-500', bg: 'bg-purple-50' },
+              { icon: Coins, text: '5% לקרן הקהילה', color: 'text-amber-500', bg: 'bg-amber-50' },
+              { icon: Unlock, text: 'ללא עלות הצטרפות', color: 'text-emerald-500', bg: 'bg-emerald-50' },
+              { icon: Truck, text: 'משלוח עד הבית', color: 'text-sky-500', bg: 'bg-sky-50' },
+            ].map((item, i) => (
+              <div key={i} className="flex flex-col items-center text-center gap-2.5 py-3">
+                <div className={`w-10 h-10 rounded-xl ${item.bg} flex items-center justify-center`}>
+                  <item.icon size={20} className={item.color} strokeWidth={2.2} />
+                </div>
+                <span className="text-sm font-bold text-slate-700 leading-tight">{item.text}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
