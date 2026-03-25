@@ -96,7 +96,7 @@ export default function CommunityLandingPage() {
           <Logo variant="wordmark" height={28} className="cursor-pointer" onClick={() => window.location.href = 'https://app.union-il.com/'} />
           <button
             onClick={() => window.location.href = 'https://app.union-il.com/join/MOSHAV-DEMO/welcome'}
-            className="bg-slate-900 text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-slate-800 transition-all active:scale-[0.97]"
+            className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-5 py-2.5 rounded-full text-sm font-bold hover:from-indigo-700 hover:to-purple-700 transition-all active:scale-[0.97] shadow-md shadow-indigo-500/20"
           >
             להצטרפות
           </button>
@@ -132,7 +132,7 @@ export default function CommunityLandingPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-14 animate-fade-in" style={{ animationDelay: '0.5s' }}>
             <button
               onClick={() => window.location.href = 'https://app.union-il.com/join/MOSHAV-DEMO/welcome'}
-              className="group bg-slate-900 text-white px-7 py-3.5 rounded-full font-bold text-base hover:bg-slate-800 transition-all active:scale-[0.97] flex items-center gap-2 w-full sm:w-auto justify-center"
+              className="group bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-7 py-3.5 rounded-full font-bold text-base hover:from-indigo-700 hover:to-purple-700 transition-all active:scale-[0.97] flex items-center gap-2 w-full sm:w-auto justify-center shadow-lg shadow-indigo-500/25"
             >
               הצטרפו — זה חינם
               <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
@@ -638,7 +638,7 @@ export default function CommunityLandingPage() {
           <div className="text-center">
             <button
               onClick={() => window.location.href = 'https://app.union-il.com/join/MOSHAV-DEMO/welcome'}
-              className="bg-white text-slate-900 px-8 py-3.5 rounded-full font-bold hover:bg-slate-100 transition-all active:scale-[0.97] shadow-xl shadow-black/20"
+              className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3.5 rounded-full font-bold hover:from-indigo-700 hover:to-purple-700 transition-all active:scale-[0.97] shadow-lg shadow-indigo-500/30"
             >
               רוצים לראות עוד מחירים? הצטרפו →
             </button>
@@ -782,7 +782,7 @@ export default function CommunityLandingPage() {
           </p>
           <button
             onClick={() => window.location.href = 'https://app.union-il.com/join/MOSHAV-DEMO/welcome'}
-            className="group bg-white text-slate-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-slate-100 transition-all active:scale-[0.97] shadow-2xl shadow-black/30 flex items-center gap-2 mx-auto"
+            className="group bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:from-indigo-700 hover:to-purple-700 transition-all active:scale-[0.97] shadow-xl shadow-indigo-500/30 flex items-center gap-2 mx-auto"
           >
             הצטרפו עכשיו — חינם
             <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
