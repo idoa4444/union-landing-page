@@ -6,7 +6,7 @@ import {
   ArrowLeft, TrendingDown, Users,
   CheckCircle, Globe, Heart, Target,
   ShoppingBag, Coins, Unlock,
-  Package, Eye, Truck, Flower2, Wrench,
+  Package, Eye, Truck, Flower2, Wrench, ChevronDown,
 } from 'lucide-react';
 
 /* ── Looping Typing Animation Hook ── */
@@ -417,6 +417,103 @@ export default function CommunityLandingPage() {
       </section>
 
       {/* ══════════════════════════════════════════
+          PRODUCT CATEGORIES
+          ══════════════════════════════════════════ */}
+      <section className="bg-white py-16 md:py-24">
+        <div className="max-w-5xl mx-auto px-4 md:px-8">
+          <div className="text-center mb-12">
+            <p className="text-indigo-600 font-bold text-sm mb-3 tracking-wide">קטלוג מוצרים</p>
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900">מה אפשר לקנות?</h2>
+            <p className="text-slate-400 mt-3">אלפי מוצרים ממותגים מיבואנים ישירים — הכל במקום אחד</p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+            {[
+              {
+                name: 'אלקטרוניקה', desc: 'טלוויזיות, מחשבים, סמארטפונים',
+                gradient: 'from-indigo-600 to-purple-700',
+                graphic: (vis) => (
+                  <div className="absolute top-3 left-3 opacity-20">
+                    <div className={`w-12 h-8 rounded-lg border-2 border-white transition-all duration-1000 ${vis ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`} />
+                    <div className={`w-5 h-5 rounded-full border-2 border-white -mt-2 mr-4 transition-all duration-1000 delay-300 ${vis ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`} />
+                  </div>
+                ),
+              },
+              {
+                name: 'מוצרי בית', desc: 'מכשירי חשמל, ריהוט, כלי מטבח',
+                gradient: 'from-purple-600 to-indigo-700',
+                graphic: (vis) => (
+                  <div className="absolute top-3 left-3 opacity-20">
+                    <div className={`w-10 h-10 rounded-xl border-2 border-white transition-all duration-1000 ${vis ? 'rotate-0 opacity-100' : '-rotate-12 opacity-0'}`} />
+                    <div className={`w-6 h-1.5 rounded-full bg-white -mt-6 mr-2 transition-all duration-1000 delay-200 ${vis ? 'opacity-100 w-6' : 'opacity-0 w-0'}`} />
+                  </div>
+                ),
+              },
+              {
+                name: 'קוסמטיקה וטיפוח', desc: 'מותגים מובילים במחירי יבואן',
+                gradient: 'from-pink-600 to-purple-700',
+                graphic: (vis) => (
+                  <div className="absolute top-3 left-3 opacity-20">
+                    <div className={`w-4 h-10 rounded-full border-2 border-white transition-all duration-1000 ${vis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`} />
+                    <div className={`w-3 h-3 rounded-full bg-white -mt-1 mr-0.5 transition-all duration-1000 delay-400 ${vis ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`} />
+                  </div>
+                ),
+              },
+              {
+                name: 'מזון ומשקאות', desc: 'מוצרי פרימיום, בריאות, אורגני',
+                gradient: 'from-emerald-600 to-teal-700',
+                graphic: (vis) => (
+                  <div className="absolute top-3 left-3 opacity-20">
+                    <div className={`w-8 h-8 rounded-full border-2 border-white transition-all duration-1000 ${vis ? 'opacity-100 scale-100' : 'opacity-0 scale-50'}`} />
+                    <div className={`w-2 h-5 rounded-full bg-white -mt-9 mr-3 transition-all duration-700 delay-300 ${vis ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'}`} />
+                  </div>
+                ),
+              },
+              {
+                name: 'ילדים ותינוקות', desc: 'עגלות, צעצועים, ביגוד',
+                gradient: 'from-violet-600 to-purple-700',
+                graphic: (vis) => (
+                  <div className="absolute top-3 left-3 opacity-20">
+                    <div className={`w-6 h-6 rounded-lg border-2 border-white rotate-45 transition-all duration-1000 ${vis ? 'opacity-100 scale-100' : 'opacity-0 scale-50'}`} />
+                    <div className={`w-4 h-4 rounded-full border-2 border-white -mt-3 mr-5 transition-all duration-700 delay-400 ${vis ? 'opacity-100' : 'opacity-0'}`} />
+                  </div>
+                ),
+              },
+              {
+                name: 'גינה ועונתי', desc: 'כלי גינה, ריהוט חוץ, עונתי',
+                gradient: 'from-teal-600 to-emerald-700',
+                graphic: (vis) => (
+                  <div className="absolute top-3 left-3 opacity-20">
+                    <div className={`w-1.5 h-8 rounded-full bg-white transition-all duration-1000 ${vis ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}`} style={{ transformOrigin: 'bottom' }} />
+                    <div className={`w-5 h-5 rounded-full border-2 border-white -mt-6 -mr-2 transition-all duration-700 delay-300 ${vis ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`} />
+                    <div className={`w-3 h-3 rounded-full border-2 border-white -mt-2 mr-2 transition-all duration-700 delay-500 ${vis ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`} />
+                  </div>
+                ),
+              },
+            ].map((cat, i) => {
+              const [ref, isVisible] = useIntersectionObserver({ threshold: 0.2 });
+              return (
+                <div
+                  key={i}
+                  ref={ref}
+                  className={`relative bg-gradient-to-br ${cat.gradient} rounded-2xl p-5 sm:p-6 overflow-hidden cursor-default transition-all duration-500 ${
+                    isVisible ? `opacity-100 translate-y-0 animate-float-${i + 1}` : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{ transitionDelay: `${i * 100}ms` }}
+                >
+                  {cat.graphic(isVisible)}
+                  <div className="relative z-10">
+                    <h3 className="font-black text-white text-sm sm:text-base mb-1">{cat.name}</h3>
+                    <p className="text-xs sm:text-sm text-white/60">{cat.desc}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
           TRUST STRIP
           ══════════════════════════════════════════ */}
       <section className="border-b border-slate-100">
@@ -757,6 +854,45 @@ export default function CommunityLandingPage() {
                         <div className="text-xs text-slate-400">{t.role} · {t.company}</div>
                       </div>
                     </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          FAQ — Accordion
+          ══════════════════════════════════════════ */}
+      <section className="bg-white py-20 md:py-28">
+        <div className="max-w-3xl mx-auto px-4 md:px-8">
+          <div className="text-center mb-14">
+            <p className="text-indigo-600 font-bold text-sm mb-3 tracking-wide">יש שאלות?</p>
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900">שאלות נפוצות</h2>
+          </div>
+
+          <div className="border border-slate-100 rounded-2xl divide-y divide-slate-100 overflow-hidden">
+            {[
+              { q: 'כמה עולה להצטרף?', a: 'חינם לחלוטין. אין דמי הצטרפות, אין מנוי חודשי, אין עמלות נסתרות. אתם משלמים רק על מוצרים שאתם בוחרים לקנות — במחיר יבואן.' },
+              { q: 'איך מצטרפים?', a: 'מקבלים קישור מהקהילה שלכם, נרשמים ב-30 שניות עם מספר טלפון, ומיד רואים את החנות עם כל המוצרים והמחירים.' },
+              { q: 'מי היבואנים?', a: 'אנחנו עובדים עם יבואנים רשמיים ומורשים בלבד. כל המוצרים מגיעים עם אחריות יבואן רשמי מלאה, בדיוק כמו בחנויות — רק בזול.' },
+              { q: 'מה קורה עם האחריות?', a: 'כל מוצר מגיע עם אחריות יבואן רשמי מלאה. שירות, החלפות, תיקונים — הכל כמו שאתם מכירים, בלי פשרות.' },
+              { q: 'איך עובדת הקרן הקהילתית?', a: '5% מכל רכישה של תושב עוברים אוטומטית לתקציב הקהילה. התושבים מצביעים ביחד על מה להשתמש בכסף — תשתיות, חינוך, אירועים. הכל שקוף בדשבורד.' },
+              { q: 'אפשר לבטל?', a: 'כן, בכל רגע. אין התחייבות, אין תקופת מינימום. פשוט מפסיקים להשתמש.' },
+            ].map((item, i) => {
+              const [open, setOpen] = useState(false);
+              return (
+                <div key={i}>
+                  <button
+                    onClick={() => setOpen(!open)}
+                    className="w-full flex items-center justify-between px-6 py-5 text-right hover:bg-slate-50 transition-colors"
+                  >
+                    <span className="font-bold text-slate-900 text-base">{item.q}</span>
+                    <ChevronDown size={18} className={`text-slate-400 flex-shrink-0 mr-3 transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
+                  </button>
+                  <div className={`overflow-hidden transition-all duration-300 ${open ? 'max-h-48' : 'max-h-0'}`}>
+                    <p className="px-6 pb-5 text-sm text-slate-500 leading-relaxed">{item.a}</p>
                   </div>
                 </div>
               );
