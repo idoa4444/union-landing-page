@@ -145,13 +145,27 @@ export default function CommunityLandingPage() {
             </button>
           </div>
 
-          {/* Stats */}
-          <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-12 animate-fade-in" style={{ animationDelay: '0.7s' }}>
-            <AnimatedStat value="40" suffix="%" label="חיסכון ממוצע" />
-            <div className="w-px h-10 sm:h-14 bg-slate-200" />
-            <AnimatedStat value="5" suffix="%" label="לקרן הקהילה" />
-            <div className="w-px h-10 sm:h-14 bg-slate-200" />
-            <AnimatedStat value="0" suffix="₪" label="עלות הצטרפות" />
+          {/* Stats cards */}
+          <div className="grid grid-cols-3 gap-3 sm:gap-4 max-w-xl md:max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.7s' }}>
+            {[
+              { value: '40', suffix: '%', label: 'חיסכון ממוצע', icon: TrendingDown, color: 'bg-indigo-100 text-indigo-600' },
+              { value: '5', suffix: '%', label: 'חוזר לקהילה', icon: Coins, color: 'bg-purple-100 text-purple-600' },
+              { value: '0', suffix: '₪', label: 'עלות הצטרפות', icon: Unlock, color: 'bg-emerald-100 text-emerald-600' },
+            ].map((stat, i) => {
+              const [ref, isVisible] = useIntersectionObserver({ threshold: 0.3 });
+              const count = useCountUp(parseInt(stat.value) || 0, isVisible, { duration: 2000 });
+              return (
+                <div key={i} ref={ref} className="bg-slate-50 rounded-2xl p-4 sm:p-6 text-center border border-slate-100">
+                  <div className={`inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-xl ${stat.color} mb-3`}>
+                    <stat.icon size={20} strokeWidth={2.5} />
+                  </div>
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-none mb-1">
+                    {stat.suffix === '₪' ? `₪${count}` : `${count}${stat.suffix}`}
+                  </div>
+                  <div className="text-xs sm:text-sm text-slate-400 font-medium">{stat.label}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -401,21 +415,19 @@ export default function CommunityLandingPage() {
       {/* ══════════════════════════════════════════
           TRUST STRIP
           ══════════════════════════════════════════ */}
-      <section className="bg-slate-50/80 border-y border-slate-100">
-        <div className="max-w-5xl mx-auto px-4 py-8 md:py-10">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-6">
+      <section className="border-b border-slate-100">
+        <div className="max-w-4xl mx-auto px-4 py-5">
+          <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
             {[
-              { icon: CheckCircle, text: 'מאובטח ומוצפן', color: 'text-indigo-500', bg: 'bg-indigo-50' },
-              { icon: Globe, text: 'מחירי יבואן ישיר', color: 'text-purple-500', bg: 'bg-purple-50' },
-              { icon: Coins, text: '5% לקרן הקהילה', color: 'text-amber-500', bg: 'bg-amber-50' },
-              { icon: Unlock, text: 'ללא עלות הצטרפות', color: 'text-emerald-500', bg: 'bg-emerald-50' },
-              { icon: Truck, text: 'משלוח עד הבית', color: 'text-sky-500', bg: 'bg-sky-50' },
+              { icon: CheckCircle, text: 'מאובטח ומוצפן' },
+              { icon: Globe, text: 'מחירי יבואן ישיר' },
+              { icon: Coins, text: '5% לקרן הקהילה' },
+              { icon: Unlock, text: 'ללא עלות הצטרפות' },
+              { icon: Truck, text: 'משלוח עד הבית' },
             ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center text-center gap-2.5 py-3">
-                <div className={`w-10 h-10 rounded-xl ${item.bg} flex items-center justify-center`}>
-                  <item.icon size={20} className={item.color} strokeWidth={2.2} />
-                </div>
-                <span className="text-sm font-bold text-slate-700 leading-tight">{item.text}</span>
+              <div key={i} className="flex items-center gap-1.5 bg-white px-3 py-2 rounded-xl border border-slate-200 text-slate-600">
+                <item.icon size={14} className="text-indigo-600 shrink-0" />
+                <span className="text-xs font-bold">{item.text}</span>
               </div>
             ))}
           </div>
