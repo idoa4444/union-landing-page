@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import useCountUp from '../../hooks/useCountUp';
 import Logo from '../../components/shared/Logo';
@@ -958,9 +959,10 @@ export default function CommunityLandingPage() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <Logo variant="full" height={24} className="brightness-0 invert opacity-60" />
             <div className="flex items-center gap-6 text-sm text-slate-500">
-              <span className="hover:text-slate-300 cursor-pointer transition">תנאי שימוש</span>
-              <span className="hover:text-slate-300 cursor-pointer transition">פרטיות</span>
-              <span className="hover:text-slate-300 cursor-pointer transition">צור קשר</span>
+              <Link to="/terms" className="hover:text-slate-300 transition">תקנון</Link>
+              <Link to="/terms" className="hover:text-slate-300 transition">מדיניות פרטיות</Link>
+              <Link to="/accessibility" className="hover:text-slate-300 transition">הצהרת נגישות</Link>
+              <a href="mailto:Unionil.support@gmail.com" className="hover:text-slate-300 transition">צור קשר</a>
             </div>
           </div>
           <div className="border-t border-slate-800/50 mt-8 pt-6 text-center text-sm text-slate-600">
