@@ -204,10 +204,10 @@ export default function CommunityLandingPage() {
             <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight">
               ככה זה נראה מבפנים
             </h2>
-            <p className="text-slate-500 mt-3 max-w-lg mx-auto">שני הפיצ׳רים שמשנים את הכל — מחירים שיורדים ותקציב קהילתי שגדל</p>
+            <p className="text-slate-500 mt-3 max-w-lg mx-auto">היבואנים שעובדים איתנו והקרן הקהילתית שגדלה מכל רכישה</p>
           </div>
 
-          {/* ═══ FEATURE 1: Dynamic Pricing ═══ */}
+          {/* ═══ FEATURE 1: Importer Network ═══ */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center mb-24 md:mb-32">
             {/* Explanation — right side (RTL) */}
             {(() => {
@@ -215,107 +215,101 @@ export default function CommunityLandingPage() {
               return (
                 <div ref={ref} className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                   <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full text-xs font-bold mb-4">
-                    <TrendingDown size={12} />
-                    מתוך דף המוצר באפליקציה
+                    <ShoppingBag size={12} />
+                    מתוך דף הבית באפליקציה
                   </div>
                   <h3 className="text-3xl md:text-4xl font-black text-slate-900 mb-4 leading-tight">
-                    ככל שיותר שכנים קונים —
+                    יבואנים ויצרנים ישירים —
                     <br />
-                    <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">המחיר יורד לכולם</span>
+                    <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">ללא מתווכים</span>
                   </h3>
                   <p className="text-slate-500 leading-relaxed mb-6">
-                    כל מוצר באפליקציה מציג מדרגות מחיר דינמיות. ככל שיותר תושבים מצטרפים לרכישה, כולם נהנים ממחיר נמוך יותר — בזמן אמת. לא צריך לחכות, לא צריך קופונים.
+                    אנחנו עובדים ישירות מול יבואנים ויצרנים מובילים. בלי שרשרת אמצעים, בלי תוספות מיותרות — המחירים שלהם הופכים למחירים שלכם.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <div className="flex items-center gap-2 text-sm text-slate-600 bg-white rounded-full px-4 py-2 border border-slate-100">
                       <CheckCircle size={14} className="text-emerald-500" />
-                      המחיר יורד אוטומטית
+                      מחירי יבואן ישיר
                     </div>
                     <div className="flex items-center gap-2 text-sm text-slate-600 bg-white rounded-full px-4 py-2 border border-slate-100">
                       <CheckCircle size={14} className="text-emerald-500" />
-                      שקוף לכל התושבים
+                      אחריות יצרן מלאה
                     </div>
                   </div>
                 </div>
               );
             })()}
 
-            {/* App component — left side */}
+            {/* App component — left side: Importer Grid (exact copy from ImporterGrid.jsx) */}
             {(() => {
               const [ref, isVisible] = useIntersectionObserver({ threshold: 0.15 });
+              const importers = [
+                { name: 'משק לין', type: 'manufacturer', gradient: 'from-emerald-500 to-teal-700', productCount: 24, joined: 18 },
+                { name: 'קיבוץ יגור', type: 'manufacturer', gradient: 'from-green-500 to-emerald-700', productCount: 32, joined: 47 },
+                { name: 'יבואן לכלי בית', type: 'importer', gradient: 'from-blue-500 to-indigo-700', productCount: 58, joined: 31 },
+                { name: 'בקרוב...', type: 'importer', gradient: 'from-indigo-500 to-purple-600', comingSoon: true },
+              ];
               return (
                 <div ref={ref} className={`transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
                   <div className="bg-white rounded-3xl p-5 md:p-7 border border-slate-200 shadow-lg shadow-slate-200/50">
-                    {/* Progress bar — from the app */}
-                    <div className={`bg-white p-4 rounded-2xl border border-slate-100 mb-4 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-                      <div className="flex items-center justify-between mb-3">
-                        <h3 className="text-sm font-bold text-slate-900">התקדמות הקבוצה</h3>
-                        <div className="flex items-center gap-1.5">
-                          <Users size={13} className="text-indigo-600" />
-                          <span className="text-xs font-bold text-indigo-600">34 הצטרפו</span>
-                        </div>
-                      </div>
-                      <div className="relative h-3 bg-slate-100 rounded-full overflow-hidden">
-                        <div className={`absolute top-0 right-0 h-full bg-gradient-to-l from-indigo-600 via-purple-500 to-indigo-400 rounded-full transition-all duration-1500 ease-out ${isVisible ? 'w-[68%]' : 'w-0'}`} />
-                      </div>
-                      <p className="text-center text-xs font-medium text-slate-600 mt-2">
-                        רק עוד <span className="text-indigo-600 font-extrabold">6 רוכשים</span> כדי לרדת למחיר של{' '}
-                        <span className="text-indigo-600 font-extrabold">₪2,899</span>!
-                      </p>
+                    {/* Section header — from the app */}
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="h-5 w-1 bg-gradient-to-b from-blue-500 to-indigo-500 rounded-full" />
+                      <h3 className="text-base font-extrabold text-slate-900">היבואנים שלנו</h3>
                     </div>
 
-                    {/* Tier list */}
-                    <div className="space-y-2">
-                      <div className={`bg-white/70 p-3.5 rounded-2xl flex justify-between items-center border border-slate-100 transition-all duration-500 delay-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`}>
-                        <div className="flex items-center gap-3">
-                          <div className="w-7 h-7 rounded-full bg-emerald-50 flex items-center justify-center">
-                            <CheckCircle size={14} className="text-emerald-400" />
-                          </div>
-                          <div>
-                            <span className="text-[10px] text-slate-400 font-medium">10–19 רוכשים</span>
-                            <p className="font-bold text-slate-400 text-sm">₪3,499</p>
-                          </div>
-                        </div>
-                        <span className="text-[9px] font-bold text-emerald-400 bg-emerald-50 px-2 py-0.5 rounded-full">הושג</span>
-                      </div>
+                    {/* 2x2 Grid — exact layout from ImporterGrid.jsx */}
+                    <div className="grid grid-cols-2 gap-3">
+                      {importers.map((importer, idx) => {
+                        const typeLabel = importer.type === 'manufacturer' ? 'יצרן' : 'יבואן';
 
-                      <div className={`bg-gradient-to-r from-indigo-50 to-purple-50 p-4 rounded-2xl flex justify-between items-center border-2 border-indigo-500 ring-4 ring-indigo-500/10 shadow-sm transition-all duration-500 delay-900 ${isVisible ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-4 scale-95'}`}>
-                        <div className="flex items-center gap-3">
-                          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center shadow-md">
-                            <TrendingDown size={18} className="text-white" />
-                          </div>
-                          <div>
-                            <div className="flex items-center gap-2 mb-0.5">
-                              <span className="text-[10px] font-bold text-indigo-600">המחיר שלך</span>
-                              <span className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full">עכשיו</span>
+                        if (importer.comingSoon) {
+                          return (
+                            <div
+                              key={idx}
+                              className={`relative aspect-square rounded-2xl overflow-hidden shadow-md text-right transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                              style={{ transitionDelay: `${600 + idx * 150}ms` }}
+                            >
+                              <div className={`absolute inset-0 bg-gradient-to-br ${importer.gradient}`} />
+                              <div className="absolute inset-0 bg-black/50" />
+                              <div className="absolute top-3 right-3 left-3 z-10">
+                                <h4 className="text-white font-extrabold text-base leading-tight drop-shadow-md">{importer.name}</h4>
+                                <span className="bg-white/25 text-white text-[9px] font-bold px-2 py-0.5 rounded-md backdrop-blur-sm mt-1 inline-block">{typeLabel}</span>
+                              </div>
+                              <div className="absolute inset-0 flex items-center justify-center z-20">
+                                <span className="text-white font-black text-xl tracking-wide drop-shadow-lg" style={{ transform: 'rotate(-25deg)' }}>עולה בקרוב</span>
+                              </div>
                             </div>
-                            <span className="text-xl font-black text-slate-900">₪3,199</span>
-                            <p className="text-[10px] text-slate-500 font-medium">20–39 רוכשים</p>
-                          </div>
-                        </div>
-                      </div>
+                          );
+                        }
 
-                      <div className={`bg-white p-3.5 rounded-2xl flex justify-between items-center border border-dashed border-indigo-200 transition-all duration-500 delay-[1100ms] ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`}>
-                        <div className="flex items-center gap-3">
-                          <div className="w-7 h-7 rounded-full bg-indigo-50 flex items-center justify-center"><Target size={14} className="text-indigo-300" /></div>
-                          <div>
-                            <span className="text-[10px] text-slate-400 font-medium">40–59 רוכשים</span>
-                            <p className="font-bold text-slate-500 text-sm">₪2,899</p>
+                        return (
+                          <div
+                            key={idx}
+                            className={`relative aspect-square rounded-2xl overflow-hidden shadow-md text-right transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                            style={{ transitionDelay: `${600 + idx * 150}ms` }}
+                          >
+                            <div className={`absolute inset-0 bg-gradient-to-br ${importer.gradient}`} />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
+                            <div className="absolute top-3 right-3 left-3 z-10">
+                              <h4 className="text-white font-extrabold text-base leading-tight drop-shadow-md">{importer.name}</h4>
+                              <div className="flex items-center gap-2 mt-1">
+                                <span className="bg-white/25 text-white text-[9px] font-bold px-2 py-0.5 rounded-md backdrop-blur-sm">{typeLabel}</span>
+                                <span className="text-white/80 text-[10px] font-medium flex items-center gap-0.5">
+                                  <ShoppingBag size={9} />
+                                  {importer.productCount} מוצרים
+                                </span>
+                              </div>
+                            </div>
+                            <div className="absolute bottom-3 left-3 right-3 z-10">
+                              <span className="bg-black/40 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-lg inline-flex items-center gap-1">
+                                <Users size={10} />
+                                {importer.joined} משפחות הצטרפו
+                              </span>
+                            </div>
                           </div>
-                        </div>
-                        <div className="flex items-center gap-1 text-indigo-400"><Unlock size={11} /><span className="text-[9px] font-bold">לפתיחה</span></div>
-                      </div>
-
-                      <div className={`bg-white p-3.5 rounded-2xl flex justify-between items-center border border-dashed border-indigo-200 transition-all duration-500 delay-[1300ms] ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`}>
-                        <div className="flex items-center gap-3">
-                          <div className="w-7 h-7 rounded-full bg-indigo-50 flex items-center justify-center"><Target size={14} className="text-indigo-300" /></div>
-                          <div>
-                            <span className="text-[10px] text-slate-400 font-medium">60+ רוכשים</span>
-                            <p className="font-bold text-slate-500 text-sm">₪2,599</p>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-1 text-indigo-400"><Unlock size={11} /><span className="text-[9px] font-bold">לפתיחה</span></div>
-                      </div>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
