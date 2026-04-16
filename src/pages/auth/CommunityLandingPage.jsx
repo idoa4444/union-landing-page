@@ -244,10 +244,10 @@ export default function CommunityLandingPage() {
             {(() => {
               const [ref, isVisible] = useIntersectionObserver({ threshold: 0.15 });
               const importers = [
-                { name: 'משק לין', type: 'manufacturer', gradient: 'from-emerald-500 to-teal-700', productCount: 24, joined: 18 },
-                { name: 'קיבוץ יגור', type: 'manufacturer', gradient: 'from-green-500 to-emerald-700', productCount: 32, joined: 47 },
-                { name: 'יבואן לכלי בית', type: 'importer', gradient: 'from-blue-500 to-indigo-700', productCount: 58, joined: 31 },
-                { name: 'בקרוב...', type: 'importer', gradient: 'from-indigo-500 to-purple-600', comingSoon: true },
+                { name: 'משק לין', type: 'manufacturer', gradient: 'from-emerald-500 to-teal-700', image: '/Meshek.png', productCount: 24, joined: 18 },
+                { name: 'קיבוץ יגור', type: 'manufacturer', gradient: 'from-green-500 to-emerald-700', image: '/Fruits.png', productCount: 32, joined: 47 },
+                { name: 'יבואן לכלי בית', type: 'importer', gradient: 'from-blue-500 to-indigo-700', image: '/Home.png', productCount: 58, joined: 31 },
+                { name: 'בקרוב...', type: 'importer', gradient: 'from-indigo-500 to-purple-600', image: '/super1.png', comingSoon: true },
               ];
               return (
                 <div ref={ref} className={`transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
@@ -270,7 +270,7 @@ export default function CommunityLandingPage() {
                               className={`relative aspect-square rounded-2xl overflow-hidden shadow-md text-right transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                               style={{ transitionDelay: `${600 + idx * 150}ms` }}
                             >
-                              <div className={`absolute inset-0 bg-gradient-to-br ${importer.gradient}`} />
+                              <img src={importer.image} alt={importer.name} className="absolute inset-0 w-full h-full object-cover" />
                               <div className="absolute inset-0 bg-black/50" />
                               <div className="absolute top-3 right-3 left-3 z-10">
                                 <h4 className="text-white font-extrabold text-base leading-tight drop-shadow-md">{importer.name}</h4>
@@ -289,7 +289,7 @@ export default function CommunityLandingPage() {
                             className={`relative aspect-square rounded-2xl overflow-hidden shadow-md text-right transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                             style={{ transitionDelay: `${600 + idx * 150}ms` }}
                           >
-                            <div className={`absolute inset-0 bg-gradient-to-br ${importer.gradient}`} />
+                            <img src={importer.image} alt={importer.name} className="absolute inset-0 w-full h-full object-cover" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
                             <div className="absolute top-3 right-3 left-3 z-10">
                               <h4 className="text-white font-extrabold text-base leading-tight drop-shadow-md">{importer.name}</h4>
